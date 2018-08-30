@@ -1,7 +1,6 @@
 package pl.slawek.component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 import pl.slawek.data.PlayerRepository;
 import pl.slawek.model.Player;
 
-@Service
+@Component
 public class TeamsCalculating {
 	
 	private PlayerRepository playerRepository;
@@ -20,7 +19,7 @@ public class TeamsCalculating {
 	
 	private List<Player> BlackTeam;
 	private List<Player> WhiteTeam;
-	private List<Player> AllPlayers = playerRepository.findAll();
+	private List<Player> AllPlayers;
 	
 	@Autowired
 	public TeamsCalculating(PlayerRepository playerRepository) {
@@ -37,23 +36,73 @@ public class TeamsCalculating {
 		return WhiteTeam;
 	}
 
-	
-
-	/*
-	for(int i=0 ; i < 1 ; i++)
-	{
+	public void CalculateSquads() {
+		BlackTeam = new ArrayList<Player>();
+		WhiteTeam = new ArrayList<Player>();;
+		AllPlayers = playerRepository.findAll();
 		AllPlayers.sort(komp);
-		CalculateSquads(AllPlayers);
+		for(int i=0 ; i < 1 ; i++)
+		{
+			ChooseTeamForPlayer();
+		}
 	}
-	*/
+
+	
 	//Chose squads based on player skill
-	private static void CalculateSquads(List <Player> allplayers)
+	private void ChooseTeamForPlayer()
 	{
 		int BlackTeamNumberOfPlayers = 0;
 		int WhiteTeamNumberOfPlayers = 0;
 		int BlackTeamPoints = 0;
 		int WhiteTeamPoints = 0;
-		
+		for(int i = 9 ; i>=0 ; i--)
+		{
+			
+				if(BlackTeamNumberOfPlayers-WhiteTeamNumberOfPlayers> 1)
+				{
+					WhiteTeam.add(AllPlayers.get(i));
+					WhiteTeamNumberOfPlayers++;
+					WhiteTeamPoints += AllPlayers.get(i).getSkillIndex();
+				}else if(WhiteTeamNumberOfPlayers-BlackTeamNumberOfPlayers> 1)
+				{
+					BlackTeam.add(AllPlayers.get(i));
+					BlackTeamNumberOfPlayers++;
+					BlackTeamPoints += AllPlayers.get(i).getSkillIndex();
+				}else
+				{
+					if(BlackTeamNumberOfPlayers > 4 || WhiteTeamNumberOfPlayers > 4)
+					{
+						if(BlackTeamNumberOfPlayers>WhiteTeamNumberOfPlayers)
+						{
+							WhiteTeam.add(AllPlayers.get(i));
+							WhiteTeamNumberOfPlayers++;
+							WhiteTeamPoints += AllPlayers.get(i).getSkillIndex();
+						}else
+						{
+							BlackTeam.add(AllPlayers.get(i));
+							BlackTeamNumberOfPlayers++;
+							BlackTeamPoints += AllPlayers.get(i).getSkillIndex();
+						}
+					}else 
+					{
+						if(BlackTeamPoints >= WhiteTeamPoints)
+						{
+							WhiteTeam.add(AllPlayers.get(i));
+							WhiteTeamNumberOfPlayers++;
+							WhiteTeamPoints += AllPlayers.get(i).getSkillIndex();
+						} else 
+						{
+							BlackTeam.add(AllPlayers.get(i));
+							BlackTeamNumberOfPlayers++;
+							BlackTeamPoints += AllPlayers.get(i).getSkillIndex();
+						}
+					}
+					
+				}
+
+			
+				
+		}		
 		
 	}
 	

@@ -7,16 +7,15 @@ public class Player {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	private String nickname;
+	private String nickName;
 	private int skillIndex;
 	
 	public Player() {
 	}
 
 	public Player(long id, String nickname, int skillIndex) {
-		super();
 		this.id = id;
-		this.nickname = nickname;
+		this.nickName = nickname;
 		this.skillIndex = skillIndex;
 	}
 	
@@ -26,11 +25,11 @@ public class Player {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getNickName() {
+		return nickName;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setNickName(String nickname) {
+		this.nickName = nickname;
 	}
 	public int getSkillIndex() {
 		return skillIndex;

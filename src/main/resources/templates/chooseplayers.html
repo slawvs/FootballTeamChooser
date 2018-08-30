@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Choose Players for Game</title>
+</head>
+<body>
+		<h1>All Players :</h1>
+		<div class="form-group blu-margin" th:object="${playersForGame}">
+		    <select class="form-control" id="testOrder" name="testOrder"  >
+		    <option value=""> Select Player </option>
+		    <option th:each="player : ${allPlayers}" th:value="${player.id}" th:text="${player.nickName}"></option>
+		    </select>
+		</div>
+</body>
+</html>
