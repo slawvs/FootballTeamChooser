@@ -17,6 +17,8 @@ public class PlayerController {
 	
 	private PlayerRepository playerRepository;
 	private TeamsCalculating teamscalculating;
+	private List <Player> playersForGame;
+	private Player gracz;
 	// private boolean DoTeamsWereCalculate = false;
 	
 	@Autowired
@@ -34,10 +36,20 @@ public class PlayerController {
 	@GetMapping("/choose")
 	public String showSquads(Model model) {
 		List <Player> allPlayers = playerRepository.findAll();
+		gracz = new Player();
 		model.addAttribute("allPlayers",allPlayers);
-		model.addAttribute("playersForGame",new ArrayList <Player> ());
+		model.addAttribute("playersForGame",gracz);
 		return "chooseplayers";
 	}
+	
+	@GetMapping("/calculate")
+	public String calculateSquads(Model model) {
+		model.addAttribute("playersForGame",gracz);
+		System.out.println(gracz.getNickName());
+//dodac ZAWARTOSC
+		return "calculateteams";
+	}
+	
 	
 	/*
 	@GetMapping("/show")

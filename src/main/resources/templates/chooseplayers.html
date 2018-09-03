@@ -6,11 +6,17 @@
 </head>
 <body>
 		<h1>All Players :</h1>
-		<div class="form-group blu-margin" th:object="${playersForGame}">
-		    <select class="form-control" id="testOrder" name="testOrder"  >
+		<div class="form-group blu-margin" >
+		    <form name='list' th:object="${playersForGame}" action="@{/calculate}" method='GET' >
+		    <select class="form-control" id="player_id" name="playerone"  >
 		    <option value=""> Select Player </option>
 		    <option th:each="player : ${allPlayers}" th:value="${player.id}" th:text="${player.nickName}"></option>
 		    </select>
+		    <input type="submit" value="Submit">
+		    </form>
 		</div>
+		
+		<a th:href="@{/calculate}">Calculate and show teams (u need at least 10 players to do that)</a>
+		
 </body>
 </html>
