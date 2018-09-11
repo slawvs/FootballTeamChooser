@@ -42,8 +42,9 @@ public class PlayerController {
 	}
 	
 	@GetMapping("/calculate")
-	public String calculateSquads(@ModelAttribute Player gracz, Model model) {
-		model.addAttribute("playersForGame",gracz);
+	public String calculateSquads(@RequestParam Long playeroneID, Model model) {
+		//model.addAttribute("playersForGame",gracz);
+		Player gracz = playerRepository.getOne(playeroneID);
 		System.out.println(gracz.getNickName());
 //dodac ZAWARTOSC
 		return "calculateteams";
