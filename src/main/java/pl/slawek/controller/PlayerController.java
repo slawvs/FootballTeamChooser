@@ -36,14 +36,13 @@ public class PlayerController {
 	@GetMapping("/choose")
 	public String showSquads(Model model) {
 		List <Player> allPlayers = playerRepository.findAll();
-		gracz = new Player();
 		model.addAttribute("allPlayers",allPlayers);
-		model.addAttribute("playersForGame",gracz);
+		model.addAttribute("playersForGame",new Player());
 		return "chooseplayers";
 	}
 	
 	@GetMapping("/calculate")
-	public String calculateSquads(Model model) {
+	public String calculateSquads(@ModelAttribute Player gracz, Model model) {
 		model.addAttribute("playersForGame",gracz);
 		System.out.println(gracz.getNickName());
 //dodac ZAWARTOSC

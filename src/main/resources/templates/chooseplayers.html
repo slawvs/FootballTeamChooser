@@ -7,8 +7,8 @@
 <body>
 		<h1>All Players :</h1>
 		<div class="form-group blu-margin" >
-		    <form name='list' th:object="${playersForGame}" action="@{/calculate}" method='GET' >
-		    <select class="form-control" id="player_id" name="playerone"  >
+		    <form name='list' th:object="${playersForGame}" th:action="@{/calculate}" method='GET' >
+		    <select class="form-control" id="player_id" name="playeroneID"  >
 		    <option value=""> Select Player </option>
 		    <option th:each="player : ${allPlayers}" th:value="${player.id}" th:text="${player.nickName}"></option>
 		    </select>
