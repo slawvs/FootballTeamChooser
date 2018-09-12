@@ -1,11 +1,14 @@
 package pl.slawek.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import pl.slawek.component.TeamsCalculating;
@@ -37,16 +40,18 @@ public class PlayerController {
 	public String showSquads(Model model) {
 		List <Player> allPlayers = playerRepository.findAll();
 		model.addAttribute("allPlayers",allPlayers);
-		model.addAttribute("playersForGame",new Player());
+		//model.addAttribute("playersForGame", new Player() );
+		model.addAttribute("playersForGame",new ArrayList <Long>());
 		return "chooseplayers";
 	}
 	
 	@GetMapping("/calculate")
-	public String calculateSquads(@RequestParam Long playeroneID, Model model) {
-		//model.addAttribute("playersForGame",gracz);
-		Player gracz = playerRepository.getOne(playeroneID);
-		System.out.println(gracz.getNickName());
+	public String calculateSquads(@RequestParam MultiValueMap <String,Long> playersForGame, Model model) {
+		playersForGame.values().forEach(System.out::println);
+		List <Long> playerCollection = playersForGame.values();
+		List <Player> listOfPlayers = playerRepository.findAllByIdIn(playerCollection);
 //dodac ZAWARTOSC
+		model.addAttribute("playersForGame",listOfPlayers);
 		return "calculateteams";
 	}
 	
