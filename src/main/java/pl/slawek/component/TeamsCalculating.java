@@ -14,7 +14,7 @@ import pl.slawek.model.Player;
 @Component
 public class TeamsCalculating {
 	
-	private PlayerRepository playerRepository;
+	//private PlayerRepository playerRepository;
 	Comparator <Player> komp = new Komparator();
 	
 	private List<Player> BlackTeam;
@@ -23,9 +23,12 @@ public class TeamsCalculating {
 	
 	@Autowired
 	public TeamsCalculating(PlayerRepository playerRepository) {
-		this.playerRepository = playerRepository;
+		//this.playerRepository = playerRepository;
 	}
 	
+	public void setAllPlayers(List<Player> AllPlayers) {
+		this.AllPlayers = AllPlayers;
+	}
 	
 	public List<Player> getBlackTeam() {
 		return BlackTeam;
@@ -39,7 +42,7 @@ public class TeamsCalculating {
 	public void CalculateSquads() {
 		BlackTeam = new ArrayList<Player>();
 		WhiteTeam = new ArrayList<Player>();;
-		AllPlayers = playerRepository.findAll();
+		//AllPlayers = playerRepository.findAll();
 		AllPlayers.sort(komp);
 		for(int i=0 ; i < 1 ; i++)
 		{
