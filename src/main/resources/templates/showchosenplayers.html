@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+        <h1>playersForGame :</h1>
+        <table border="1">
+            <tr>
+                <th>NickName</th>
+                <th>SkillIndex</th>
+            </tr>
+            <tr th:each="singlePlayer: ${listOfPlayers}" th:object="${singlePlayer}">
+                <td th:text="*{nickName}">Some No Name</td>
+                <td th:text="*{skillIndex}"> 2 </td>
+            </tr>
+        </table>
+   		
+   		<a th:href="@{/calculate}">Calculate squads (u need at least 10 players to do that)</a>
+</body>
+</html>

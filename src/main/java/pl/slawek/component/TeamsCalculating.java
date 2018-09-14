@@ -44,10 +44,8 @@ public class TeamsCalculating {
 		WhiteTeam = new ArrayList<Player>();;
 		//AllPlayers = playerRepository.findAll();
 		AllPlayers.sort(komp);
-		for(int i=0 ; i < 1 ; i++)
-		{
-			ChooseTeamForPlayer();
-		}
+		ChooseTeamForPlayer();
+
 	}
 
 	

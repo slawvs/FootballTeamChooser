@@ -1,16 +1,11 @@
 package pl.slawek.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import pl.slawek.component.TeamsCalculating;
@@ -40,7 +35,7 @@ public class PlayerController {
 	}
 	
 	@GetMapping("/choose")
-	public String showSquads(Model model) {
+	public String choosePlayers(Model model) {
 		List <Player> allPlayers = playerRepository.findAll();
 		model.addAttribute("allPlayers",allPlayers);
 		//model.addAttribute("playersForGame", new Player() );
@@ -48,10 +43,16 @@ public class PlayerController {
 		return "chooseplayers";
 	}
 	
-	@GetMapping("/calculate")
-	public String calculateSquads(@RequestParam(value="PlayerID") List <Long> playersForGame, Model model) {
+	@GetMapping("/show")
+	public String showChosenPlayers(@RequestParam(value="PlayerID") List <Long> playersForGame, Model model) {
 		listOfPlayers = playerRepository.findAllByIdIn(playersForGame);
-		model.addAttribute("playersForGame",listOfPlayers);
+		model.addAttribute("listOfPlayers",listOfPlayers);
+		return "showchosenplayers";
+	}
+	
+	@GetMapping("/calculate")
+	public String calculateSquads(Model model) {
+		model.addAttribute("listOfPlayers",listOfPlayers);
 		
 		teamscalculating.setAllPlayers(listOfPlayers);
 		teamscalculating.CalculateSquads();
@@ -62,19 +63,4 @@ public class PlayerController {
 		
 		return "calculateteams";
 	}
-	
-	
-	/*@GetMapping("/show")
-	public String showSquads(Model model) {
-		if(DoTeamsWereCalculate==false)
-		{
-			teamscalculating.CalculateSquads();
-			DoTeamsWereCalculate = true;
-
-		List <Player> blackTeam = teamscalculating.getBlackTeam();
-		List <Player> whiteTeam = teamscalculating.getWhiteTeam();
-		model.addAttribute("blackTeam",blackTeam);
-		model.addAttribute("whiteTeam",whiteTeam);
-		return "showsquads";
-	}*/
 }

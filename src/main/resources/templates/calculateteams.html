@@ -12,7 +12,7 @@
                 <th>NickName</th>
                 <th>SkillIndex</th>
             </tr>
-            <tr th:each="singlePlayer: ${playersForGame}" th:object="${singlePlayer}">
+            <tr th:each="singlePlayer: ${listOfPlayers}" th:object="${singlePlayer}">
                 <td th:text="*{nickName}">Some No Name</td>
                 <td th:text="*{skillIndex}"> 2 </td>
             </tr>
@@ -42,5 +42,6 @@
             </tr>
         </table>
         
+        <a th:href="@{/calculate}">Calculate squads (u can do it again)</a>
 </body>
 </html>
