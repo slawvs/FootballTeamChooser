@@ -20,7 +20,9 @@ public class TeamsCalculating {
 	private List<Player> BlackTeam;
 	private List<Player> WhiteTeam;
 	private List<Player> AllPlayers;
+	private Integer numberOfplayersInTeam;
 	
+
 	@Autowired
 	public TeamsCalculating(PlayerRepository playerRepository) {
 		//this.playerRepository = playerRepository;
@@ -37,6 +39,10 @@ public class TeamsCalculating {
 
 	public List<Player> getWhiteTeam() {
 		return WhiteTeam;
+	}
+	
+	public void setNumberOfplayersInTeam(Integer numberOfplayersInTeam) {
+		this.numberOfplayersInTeam = numberOfplayersInTeam;
 	}
 
 	public void CalculateSquads() {
@@ -56,7 +62,7 @@ public class TeamsCalculating {
 		int WhiteTeamNumberOfPlayers = 0;
 		int BlackTeamPoints = 0;
 		int WhiteTeamPoints = 0;
-		for(int i = 9 ; i>=0 ; i--)
+		for(int i = 2*numberOfplayersInTeam-1 ; i>=0 ; i--)
 		{
 			
 				if(BlackTeamNumberOfPlayers-WhiteTeamNumberOfPlayers> 1)
@@ -71,7 +77,7 @@ public class TeamsCalculating {
 					BlackTeamPoints += AllPlayers.get(i).getSkillIndex();
 				}else
 				{
-					if(BlackTeamNumberOfPlayers > 4 || WhiteTeamNumberOfPlayers > 4)
+					if(BlackTeamNumberOfPlayers > numberOfplayersInTeam-1 || WhiteTeamNumberOfPlayers > numberOfplayersInTeam-1)
 					{
 						if(BlackTeamNumberOfPlayers>WhiteTeamNumberOfPlayers)
 						{

@@ -19,6 +19,7 @@ public class PlayerController {
 	private TeamsCalculating teamscalculating;
 	
 	private List <Player> listOfPlayers;
+	private Integer numberOfplayersInTeam;
 	//private Player gracz;
 	// private boolean DoTeamsWereCalculate = false;
 	
@@ -31,7 +32,7 @@ public class PlayerController {
 	@PostMapping("/save")
 	public String saveTime(@ModelAttribute Player player) {
 		playerRepository.save(player);
-		return "redirect:/";
+		return "redirect:/add";
 	}
 	
 	@GetMapping("/choose")
@@ -44,8 +45,11 @@ public class PlayerController {
 	}
 	
 	@GetMapping("/show")
-	public String showChosenPlayers(@RequestParam(value="PlayerID") List <Long> playersForGame, Model model) {
+	public String showChosenPlayers(@RequestParam(value="PlayerID") List <Long> playersForGame,
+			@RequestParam(value="numberOfPlayers") Integer numberOfplayersInTeam,
+			Model model) {
 		listOfPlayers = playerRepository.findAllByIdIn(playersForGame);
+		this.numberOfplayersInTeam = numberOfplayersInTeam;
 		model.addAttribute("listOfPlayers",listOfPlayers);
 		return "showchosenplayers";
 	}
@@ -55,6 +59,7 @@ public class PlayerController {
 		model.addAttribute("listOfPlayers",listOfPlayers);
 		
 		teamscalculating.setAllPlayers(listOfPlayers);
+		teamscalculating.setNumberOfplayersInTeam(numberOfplayersInTeam);
 		teamscalculating.CalculateSquads();
 		List <Player> blackTeam = teamscalculating.getBlackTeam();
 		List <Player> whiteTeam = teamscalculating.getWhiteTeam();

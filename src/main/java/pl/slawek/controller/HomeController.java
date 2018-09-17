@@ -8,11 +8,15 @@ import pl.slawek.model.Player;
 
 @Controller
 public class HomeController {
-	
 	@GetMapping
 	public String home(Model model) {
-		model.addAttribute("player", new Player());
 		return "index";
+	}
+	
+	@GetMapping("/add")
+	public String addNewPlayer(Model model) {
+		model.addAttribute("player", new Player());
+		return "addnewplayer";
 	}
 
 }

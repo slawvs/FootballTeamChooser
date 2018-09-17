@@ -6,12 +6,8 @@
 </head>
 <body>
     <h1>Player Registration</h1>
-    <form action="#" method="post" th:action="@{/save}" th:object="${player}">
-        <p>Nickname <input type="text" th:field="*{nickName}" /></p>
-        <p>Skill <input type="number" name="skillIndex" min="1" max="10" />
-        </p>
-        <input type="submit" value="Save" />
-    </form>
-    <a th:href="@{/choose}">Choose players for game and calculate squads (u need at least 10 players to do that)</a>
+    <p><a th:href="@{/add}">Add new player to database </a></p>
+    <p><a th:href="@{/choose}">Choose players for game and calculate squads </a></p>
+
 </body>
 </html>
