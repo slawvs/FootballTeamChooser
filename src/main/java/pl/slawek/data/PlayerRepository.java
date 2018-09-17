@@ -12,5 +12,6 @@ import pl.slawek.model.Player;
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Long> {
 	
+	Player findFirstByNickName(String nickName);
 	List <Player> findAllByIdIn(Collection <Long> playerList);
 }

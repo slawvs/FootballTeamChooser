@@ -29,11 +29,6 @@ public class PlayerController {
 		this.teamscalculating = teamscalculating;
 	}
 	
-	@PostMapping("/save")
-	public String saveTime(@ModelAttribute Player player) {
-		playerRepository.save(player);
-		return "redirect:/add";
-	}
 	
 	@GetMapping("/choose")
 	public String choosePlayers(Model model) {

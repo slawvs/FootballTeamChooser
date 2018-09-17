@@ -13,10 +13,4 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping("/add")
-	public String addNewPlayer(Model model) {
-		model.addAttribute("player", new Player());
-		return "addnewplayer";
-	}
-
 }
