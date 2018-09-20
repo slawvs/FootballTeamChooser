@@ -19,6 +19,18 @@
         <input type="submit" value="Find" />
     </form>
     
+    <h1>Find and Edit Player</h1>
+    <form action="#" method="post" th:action="@{/edit}" th:object="${player}">
+        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
+        <input type="submit" value="Find & Edit" />
+    </form>
+    
+    <h1>Delete Player</h1>
+    <form action="#" method="post" th:action="@{/delete}" th:object="${player}">
+        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
+        <input type="submit" value="Delete" />
+    </form>
+    
     <p><a th:href="@{/choose}">Choose players for game and calculate squads </a></p>
 	<p><a th:href="@{/}"> HOME </a></p>
 </body>
