@@ -41,18 +41,8 @@ public class CrudController {
 	
 	@PostMapping("/edit")
 	public String editPlayer(@RequestParam String nickname,Model model) {
-		Player player = playerRepository.findFirstByNickName(nickname);
-		model.addAttribute("player",player);
-		Player playerToUpdate = playerRepository.getOne(player.getId());
-		model.addAttribute("playertoupdate",playerToUpdate);
+		model.addAttribute("player",playerRepository.findFirstByNickName(nickname));
 		return "editplayer";
-	}
-	
-	@PostMapping("/update")
-	public String updatePlayer(@ModelAttribute Player playertoupdate) {
-		System.out.println(playertoupdate.getId());
-		playerRepository.save(playertoupdate);
-		return "redirect:/manage";
 	}
 	
 	@PostMapping("/delete")
