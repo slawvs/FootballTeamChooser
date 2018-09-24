@@ -1,12 +1,18 @@
 package pl.slawek.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
+
+
 
 @Entity
 public class Player {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	@Column(nullable = false, length = 15, unique = true)
+	@NotEmpty
 	private String nickName;
 	private int skillIndex;
 	
