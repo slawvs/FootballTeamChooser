@@ -1,7 +1,12 @@
 package pl.slawek.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+
 
 
 
@@ -12,14 +17,17 @@ public class Player {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	@Column(nullable = false, length = 15, unique = true)
-	@NotEmpty
+	@NotEmpty(message = "{pl.slawek.model.Player.nickName.NotEmpty}")
 	private String nickName;
-	private int skillIndex;
+	@NotNull(message = "{pl.slawek.model.Player.skillIndex.NotEmpty}")
+	@Min(1)
+	@Max(10)
+	private Integer skillIndex;
 	
 	public Player() {
 	}
 
-	public Player(long id, String nickname, int skillIndex) {
+	public Player(long id, String nickname, Integer skillIndex) {
 		this.id = id;
 		this.nickName = nickname;
 		this.skillIndex = skillIndex;
@@ -37,10 +45,10 @@ public class Player {
 	public void setNickName(String nickname) {
 		this.nickName = nickname;
 	}
-	public int getSkillIndex() {
+	public Integer getSkillIndex() {
 		return skillIndex;
 	}
-	public void setSkillIndex(int skillIndex) {
+	public void setSkillIndex(Integer skillIndex) {
 		this.skillIndex = skillIndex;
 	}
 	

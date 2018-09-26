@@ -8,9 +8,10 @@
     <h1>Manage players in database</h1>
     <h1>Player Registration</h1>
     <form action="#" method="post" th:action="@{/save}" th:object="${player}">
-    	<p th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}">First name errors</p>
-        <p>Nickname <input type="text" th:field="*{nickName}" /></p>
-        <p>Skill <input type="number" name="skillIndex" min="1" max="10" /></p>
+        <p>Nickname <input type="text" th:field="*{nickName}" />
+        <span style="color:red" th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}">First name errors</span></p>
+        <p>Skill <input type="number" th:field="*{skillIndex}" min="1" max="10" />
+        <span style="color:red" th:if="${#fields.hasErrors('skillIndex')}" th:errors="*{skillIndex}">Skill index errors</span></p>
         <input type="submit" value="Save" />
     </form>
     
