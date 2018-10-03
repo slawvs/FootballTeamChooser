@@ -1,7 +1,10 @@
 package pl.slawek.controller;
 
 import java.util.List;
+import java.util.Set;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,22 @@ public class CrudController {
 	}
 	
 	@PostMapping("/save")
+	public String saveNewPlayer(@ModelAttribute Player player) {
+        try {
+        	playerRepository.save(player);
+        	return "redirect:/manage";
+        } catch(ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> errors = e.getConstraintViolations();
+            errors.forEach(err -> System.err.println(
+                    err.getPropertyPath() + " " +
+                    err.getInvalidValue() + " " + 
+                    err.getMessage()));
+            return "manage";
+        }
+
+	}
+	
+	/*@PostMapping("/save")
 	public String saveNewPlayer(@Valid @ModelAttribute Player player, BindingResult result) {
         if (result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
@@ -44,7 +63,7 @@ public class CrudController {
         	return "redirect:/manage";
         }
 		return "manage";
-	}
+	}*/
 	
 	@GetMapping("/find")
 	public String showPlayer(@RequestParam String nickname,Model model) {
