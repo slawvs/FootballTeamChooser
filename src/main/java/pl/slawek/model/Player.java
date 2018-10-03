@@ -6,9 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
-
-
+import pl.slawek.constraint.UniqueNickName;
 
 
 @Entity
@@ -18,6 +16,7 @@ public class Player {
 	private long id;
 	@Column(nullable = false, length = 15, unique = true)
 	@NotEmpty(message = "{pl.slawek.model.Player.nickName.NotEmpty}")
+	@UniqueNickName
 	private String nickName;
 	@NotNull(message = "{pl.slawek.model.Player.skillIndex.NotEmpty}")
 	@Min(1)

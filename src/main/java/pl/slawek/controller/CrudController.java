@@ -6,12 +6,15 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
+import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,10 +27,12 @@ import pl.slawek.model.Player;
 public class CrudController {
 
 	private PlayerRepository playerRepository;
+	private Validator validator;
 	
     @Autowired
-    public CrudController(PlayerRepository playerRepository) {
+    public CrudController(PlayerRepository playerRepository,Validator validator ) {
         this.playerRepository = playerRepository;
+        this.validator = validator;
     }
     
 	@GetMapping("/manage")
@@ -37,6 +42,21 @@ public class CrudController {
 	}
 	
 	@PostMapping("/save")
+	public String saveNewPlayer(@ModelAttribute Player player) {
+		
+            Set<ConstraintViolation<Player>> errors = validator.validate(player);
+            if(!errors.isEmpty()) {
+                errors.forEach(err -> System.err.println(err.getMessage()));
+                return "manage";
+            } else {
+            	playerRepository.save(player);
+            	return "redirect:/manage";
+            }
+        }
+	
+	
+	
+	/*@PostMapping("/save")
 	public String saveNewPlayer(@ModelAttribute Player player) {
         try {
         	playerRepository.save(player);
