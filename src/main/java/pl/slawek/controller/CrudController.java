@@ -52,6 +52,7 @@ public class CrudController {
             	playerRepository.save(player);
             	return "redirect:/manage";
             }
+            
         }
 	
 	

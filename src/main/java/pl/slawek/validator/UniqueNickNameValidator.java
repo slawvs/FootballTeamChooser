@@ -10,12 +10,8 @@ import pl.slawek.data.PlayerRepository;
 
 public class UniqueNickNameValidator implements ConstraintValidator<UniqueNickName, String>   {
 	
+	@Autowired
 	private PlayerRepository playerRepository;
-
-	
-	public UniqueNickNameValidator (PlayerRepository playerRepository) {
-		this.playerRepository = playerRepository;
-	}
 	
     @Override
     public void initialize(UniqueNickName constraintAnnotation) {
