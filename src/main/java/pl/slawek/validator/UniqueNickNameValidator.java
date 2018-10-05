@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pl.slawek.constraint.UniqueNickName;
 import pl.slawek.data.PlayerRepository;
 
+
 public class UniqueNickNameValidator implements ConstraintValidator<UniqueNickName, String>   {
 	
 	@Autowired
 	private PlayerRepository playerRepository;
 	
-    @Override
+	@Override
     public void initialize(UniqueNickName constraintAnnotation) {
     }	
 	

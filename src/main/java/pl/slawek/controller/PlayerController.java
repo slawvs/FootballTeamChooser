@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import pl.slawek.component.TeamsCalculating;
 import pl.slawek.data.PlayerRepository;
 import pl.slawek.model.Player;
+import pl.slawek.service.TeamsCalculating;
 
 @Controller
 public class PlayerController {

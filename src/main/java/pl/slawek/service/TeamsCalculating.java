@@ -1,4 +1,4 @@
-package pl.slawek.component;
+package pl.slawek.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
