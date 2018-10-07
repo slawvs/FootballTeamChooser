@@ -22,17 +22,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import pl.slawek.data.PlayerRepository;
 import pl.slawek.model.Player;
+import pl.slawek.service.PlayerService;
 
 @Controller
 public class CrudController {
 
+	private PlayerService playerService;
 	private PlayerRepository playerRepository;
-	private Validator validator;
 	
     @Autowired
-    public CrudController(PlayerRepository playerRepository,Validator validator ) {
+    public CrudController(PlayerRepository playerRepository,PlayerService playerService ) {
         this.playerRepository = playerRepository;
-        this.validator = validator;
+        this.playerService = playerService;
     }
     
 	@GetMapping("/manage")
@@ -42,17 +43,17 @@ public class CrudController {
 	}
 	
 	@PostMapping("/save")
-	public String saveNewPlayer(@ModelAttribute Player player) {
-		
-            Set<ConstraintViolation<Player>> errors = validator.validate(player);
-            if(!errors.isEmpty()) {
-                errors.forEach(err -> System.err.println(err.getMessage()));
-                return "manage";
-            } else {
-            	playerRepository.save(player);
-            	return "redirect:/manage";
-            }
-            
+	public String saveNewPlayer(@Valid @ModelAttribute Player player, BindingResult result) {
+			if(!result.hasErrors() && playerService.verifyPlayer(player))
+			{
+				playerRepository.save(player);
+				return "redirect:/manage";
+			}else
+			{
+	            List<ObjectError> errors = result.getAllErrors();
+	            errors.forEach(err -> System.out.println(err.getDefaultMessage()));
+	            return "manage";
+			} 
         }
 	
 	
@@ -88,6 +89,7 @@ public class CrudController {
 	
 	@GetMapping("/find")
 	public String showPlayer(@RequestParam String nickname,Model model) {
+		if(nickname)
 		model.addAttribute("player",playerRepository.findFirstByNickName(nickname));
 		return "showplayer";
 	}
