@@ -8,11 +8,13 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.slawek.data.PlayerRepository;
 import pl.slawek.model.Player;
 
 @Service
 public class PlayerService {
 	private Validator validator;
+	private PlayerRepository playerRepository;
 	
 	@Autowired
 	public PlayerService(Validator validator) {
@@ -26,6 +28,12 @@ public class PlayerService {
         } else {
         	return true;
         }
+	}
+	
+	public Player findPlayerInDatabase(String nickName) {
+		Player player = playerRepository.findFirstByNickName(nickName);
+		
+		return player;
 	}
 
 }

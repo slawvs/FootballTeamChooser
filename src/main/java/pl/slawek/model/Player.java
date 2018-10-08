@@ -3,6 +3,7 @@ package pl.slawek.model;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -15,7 +16,7 @@ public class Player {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	@Column(nullable = false, length = 15, unique = true)
-	@NotEmpty(message = "{pl.slawek.model.Player.nickName.NotEmpty}")
+	@NotBlank(message = "{pl.slawek.model.Player.nickName.NotEmpty}")
 	@UniqueNickName
 	private String nickName;
 	@NotNull(message = "{pl.slawek.model.Player.skillIndex.NotEmpty}")
