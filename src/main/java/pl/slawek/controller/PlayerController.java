@@ -20,8 +20,7 @@ public class PlayerController {
 	
 	private List <Player> listOfPlayers;
 	private Integer numberOfplayersInTeam;
-	//private Player gracz;
-	// private boolean DoTeamsWereCalculate = false;
+
 	
 	@Autowired
 	public PlayerController(PlayerRepository playerRepository,TeamsCalculating teamscalculating) {
@@ -34,7 +33,6 @@ public class PlayerController {
 	public String choosePlayers(Model model) {
 		List <Player> allPlayers = playerRepository.findAll();
 		model.addAttribute("allPlayers",allPlayers);
-		//model.addAttribute("playersForGame", new Player() );
 		model.addAttribute("playersForGame",new ArrayList <Long>());
 		return "chooseplayers";
 	}
