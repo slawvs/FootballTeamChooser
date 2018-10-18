@@ -22,24 +22,8 @@
 	</style>
 </head>
 <body>
-	<div class="navbar navbar-default navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="javascript:void(0);">Football</a>
-			</div>
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class=active><a th:href="@{/}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-info-sign"></span>About</a></li>
-					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-phone-alt"></span>Contact</a></li>
-				</ul>
-				<ul>
-					<li>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	<div th:insert="fragments/navbar :: top-navbar"></div>
+	
 	<div class="row">
 		<div class="menu navbar navbar-default">
 			<div class="menu-container">
@@ -55,15 +39,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="navbar navbar-default navbar-fixed-bottom">
-		<div class="container">
-			<div class="col-md-10 navbar-text text-center">2018, All Rights Reserved by Pompon</div>
-		</div>
-	</div>
+	<div th:insert="fragments/navbar :: bottom-navbar"></div>
 
 	
 </body>
-	<!-- jQuery first, then Bootstrap JS -->
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+
+
 </html>
