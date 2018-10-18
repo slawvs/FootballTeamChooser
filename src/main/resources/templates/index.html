@@ -1,13 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<title>Football team chooser</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+
+	<title>Football team chooser</title>
+	<style>
+		.row {
+			margin-top: 50px; margin-left: 0px; margin-right: 0px;
+		}
+		.menu {
+			height: 100%; position: fixed; background-color: #f8f8f8;
+		}
+		.menu .navbar-nav li {
+			width: 100%; border-bottom: 1px solid #e7e7e7;
+		}
+	</style>
 </head>
 <body>
-    <h1>Football team chooser</h1>
-    <p><a th:href="@{/choose}">Choose players for game and calculate squads </a></p>
-    <p><a th:href="@{/manage}">Manage database </a></p>
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="javascript:void(0);">Football</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class=active><a th:href="@{/}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-info-sign"></span>About</a></li>
+					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-phone-alt"></span>Contact</a></li>
+				</ul>
+				<ul>
+					<li>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="menu navbar navbar-default">
+			<div class="menu-container">
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/choose}"><span class="glyphicon glyphicon-user"></span>Choose players for game and calculate squads </a></li>
+					<li><a th:href="@{/manage}"><span class="glyphicon glyphicon-info-sign"></span>Manage database</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="panel-body" style="margin-left: 500px;">
+				<p>Football team chooser</p>
+			</div>
+		</div>
+	</div>
+	<div class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container">
+			<div class="col-md-10 navbar-text text-center">2018, All Rights Reserved by Pompon</div>
+		</div>
+	</div>
+
 	
 </body>
+	<!-- jQuery first, then Bootstrap JS -->
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </html>
