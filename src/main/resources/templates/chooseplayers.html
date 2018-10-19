@@ -2,26 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Choose Players for Game</title>
+	<th:block th:insert="fragments/navbar :: bootstrap&jquery" />
+	<style th:replace="fragments/navbar :: style"></style>
+
+	<title>Choose Players for Game</title>
 </head>
 <body>
-		<h1>All Players :</h1>
-		<div class="form-group blu-margin" >
-			<p>Select players for your game ( u need at least 2x number of players in one team) </p>
-		    <form name='list' th:object="${playersForGame}" th:action="@{/show}" method='GET' >
-		    <select class="form-control" id="ID" name="PlayerID" multiple="multiple">
-		    <option value=""> Select Player </option>
-		    <option th:each="player : ${allPlayers}" th:value="${player.id}" th:text="${player.nickName}"></option>
-		    </select>
-		    <p>How many players in one team ? </p>
-		    <select id="numberOfPlayers" name="numberOfPlayers">
-    		<option th:each="i : ${#numbers.sequence(3, 11)}" th:value="${i}" th:text="${i}" th:selected="${i==5}"></option>
-			</select>
-		    
-		    <input type="submit" value="Submit">
-		    </form>
+
+	<div th:replace="fragments/navbar :: top-navbar"></div>
+	
+	<div th:replace="fragments/navbar :: left-menu"></div>
+	
+	<div class="container-fluid">
+		<div class="panel-body" style="margin-left: 500px;">
+			<h1>All Players :</h1>
+			<div class="form-group blu-margin" >
+				<p>Select players for your game ( u need at least 2x number of players in one team) </p>
+			    <form name='list' th:object="${playersForGame}" th:action="@{/show}" method='GET' >
+			    <select class="form-control" id="ID" name="PlayerID" multiple="multiple">
+			    <option value=""> Select Player </option>
+			    <option th:each="player : ${allPlayers}" th:value="${player.id}" th:text="${player.nickName}"></option>
+			    </select>
+			    <p>How many players in one team ? </p>
+			    <select id="numberOfPlayers" name="numberOfPlayers">
+		   		<option th:each="i : ${#numbers.sequence(3, 11)}" th:value="${i}" th:text="${i}" th:selected="${i==5}"></option>
+				</select>
+			    
+			    <input type="submit" value="Submit">
+			    </form>
+			</div>	
 		</div>
+	</div>
+	<div th:replace="fragments/navbar :: bottom-navbar"></div>
 		
-		<p><a th:href="@{/}"> HOME </a></p>
 </body>
 </html>

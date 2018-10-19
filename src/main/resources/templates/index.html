@@ -1,46 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+	
+	<!-- Bootstrap -->	
+	<th:block th:insert="fragments/navbar :: bootstrap&jquery" />
 
 	<title>Football team chooser</title>
-	<style>
-		.row {
-			margin-top: 50px; margin-left: 0px; margin-right: 0px;
-		}
-		.menu {
-			height: 100%; position: fixed; background-color: #f8f8f8;
-		}
-		.menu .navbar-nav li {
-			width: 100%; border-bottom: 1px solid #e7e7e7;
-		}
-	</style>
+	
+	<style th:replace="fragments/navbar :: style"></style>
+	
 </head>
 <body>
-	<div th:insert="fragments/navbar :: top-navbar"></div>
 	
-	<div class="row">
-		<div class="menu navbar navbar-default">
-			<div class="menu-container">
-				<ul class="nav navbar-nav">
-					<li><a th:href="@{/choose}"><span class="glyphicon glyphicon-user"></span>Choose players for game and calculate squads </a></li>
-					<li><a th:href="@{/manage}"><span class="glyphicon glyphicon-info-sign"></span>Manage database</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="panel-body" style="margin-left: 500px;">
-				<p>Football team chooser</p>
-			</div>
+	<div th:replace="fragments/navbar :: top-navbar"></div>
+	
+	<div th:replace="fragments/navbar :: left-menu"></div>
+	
+	<div class="container-fluid">
+		<div class="panel-body" style="margin-left: 500px;">
+			<p>Football team chooser</p>
 		</div>
 	</div>
-	<div th:insert="fragments/navbar :: bottom-navbar"></div>
-
+	<div th:replace="fragments/navbar :: bottom-navbar"></div>
+	
 	
 </body>
 

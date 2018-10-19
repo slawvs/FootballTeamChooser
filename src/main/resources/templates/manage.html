@@ -1,41 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<title>Football team chooser</title>
+	<meta charset="UTF-8" />
+	<th:block th:insert="fragments/navbar :: bootstrap&jquery" />
+	<title>Football team chooser</title>
+	
+	<style th:replace="fragments/navbar :: style"></style>
+	
 </head>
 <body>
-    <h1>Manage players in database</h1>
-    <h1>Player Registration</h1>
-    <form action="#" method="post" th:action="@{/save}" th:object="${player}">
-        <p>Nickname <input type="text" th:field="*{nickName}" />
-		<span style="color:red" th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}">First name errors</span></p>
-        <p>Skill <input type="number" th:field="*{skillIndex}" min="1" max="10" />
-		<span style="color:red" th:if="${#fields.hasErrors('skillIndex')}" th:errors="*{skillIndex}">Skill index errors</span></p>
-        <input type="submit" value="Save" />
-    </form>
-    
-    <h1><span style="color:red" th:if="${message}" th:text="${message}">This will show if player doesn't exist</span></h1>
-    
-    <h1>Show Player</h1>
-    <form action="#" method="get" th:action="@{/find}" th:object="${player}">
-        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
-        <input type="submit" value="Find" />
-    </form>
-    
-    <h1>Find and Edit Player</h1>
-    <form action="#" method="post" th:action="@{/edit}" th:object="${player}">
-        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
-        <input type="submit" value="Find & Edit" />
-    </form>
-    
-    <h1>Delete Player</h1>
-    <form action="#" method="post" th:action="@{/delete}" th:object="${player}">
-        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
-        <input type="submit" value="Delete" />
-    </form>
-    
-    <p><a th:href="@{/choose}">Choose players for game and calculate squads </a></p>
-	<p><a th:href="@{/}"> HOME </a></p>
+
+	<div th:replace="fragments/navbar :: top-navbar"></div>
+	
+	<div th:replace="fragments/navbar :: left-menu"></div>
+	
+	<div class="container-fluid">
+		<div class="panel-body" style="margin-left: 500px;">
+			<h1>Manage players in database</h1>
+		    <h1>Player Registration</h1>
+		    <form action="#" method="post" th:action="@{/save}" th:object="${player}">
+		        <p>Nickname <input type="text" th:field="*{nickName}" />
+				<span style="color:red" th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}">First name errors</span></p>
+		        <p>Skill <input type="number" th:field="*{skillIndex}" min="1" max="10" />
+				<span style="color:red" th:if="${#fields.hasErrors('skillIndex')}" th:errors="*{skillIndex}">Skill index errors</span></p>
+		        <input type="submit" value="Save" />
+		    </form>
+		    
+		    <h1><span style="color:red" th:if="${message}" th:text="${message}">This will show if player doesn't exist</span></h1>
+		    
+		    <h1>Show Player</h1>
+		    <form action="#" method="get" th:action="@{/find}" th:object="${player}">
+		        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
+		        <input type="submit" value="Find" />
+		    </form>
+		    
+		    <h1>Find and Edit Player</h1>
+		    <form action="#" method="post" th:action="@{/edit}" th:object="${player}">
+		        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
+		        <input type="submit" value="Find & Edit" />
+		    </form>
+		    
+		    <h1>Delete Player</h1>
+		    <form action="#" method="post" th:action="@{/delete}" th:object="${player}">
+		        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
+		        <input type="submit" value="Delete" />
+		    </form>	
+		</div>
+	</div>
+	
+	<div th:replace="fragments/navbar :: bottom-navbar"></div>
+	
 </body>
 </html>

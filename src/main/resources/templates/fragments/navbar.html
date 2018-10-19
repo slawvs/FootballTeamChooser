@@ -2,7 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<th:block th:fragment="boostrap">
+	
+	<!-- Bootstrap -->
+	
+	<th:block th:fragment="bootstrap&jquery">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -11,9 +14,26 @@
     
     <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+    </th:block>
+	
+	<title>Insert title here</title>
+	
+	<!-- Style -->
+	<style th:fragment="style">
+		.row {
+			margin-top: 50px; margin-left: 0px; margin-right: 0px;
+		}
+		.menu {
+			height: 100%; position: fixed; background-color: #f8f8f8;
+		}
+		.menu .navbar-nav li {
+			width: 100%; border-bottom: 1px solid #e7e7e7;
+		}
+	</style>
+
 </head>
 <body>
+	<!-- top-navbar -->
 	
 	<div th:fragment="top-navbar" class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
@@ -33,6 +53,22 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Left-menu -->
+	
+	<div th:fragment="left-menu" class="row">
+		<div class="menu navbar navbar-default">
+			<div class="menu-container">
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/choose}"><span class="glyphicon glyphicon-user"></span>Choose players for game and calculate squads </a></li>
+					<li><a th:href="@{/manage}"><span class="glyphicon glyphicon-info-sign"></span>Manage database</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- bottom-navbar -->
 	
 	<div th:fragment="bottom-navbar" class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container">
