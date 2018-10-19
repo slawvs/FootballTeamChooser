@@ -2,32 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>All results</title>
+	<th:block th:insert="fragments/navbar :: head" />
+	<title>All results</title>
 </head>
 <body>
-        <h1>Black Team Players :</h1>
-        <table border="1">
-            <tr>
-                <th>NickName</th>
-                <th>SkillIndex</th>
-            </tr>
-            <tr th:each="singlePlayer: ${blackTeam}" th:object="${singlePlayer}">
-                <td th:text="*{nickName}">Some No Name</td>
-                <td th:text="*{skillIndex}"> 2 </td>
-            </tr>
-        </table>
-        
-		<h1>White Team Players :</h1>
-        <table border="1">
-            <tr>
-                <th>NickName</th>
-                <th>SkillIndex</th>
-            </tr>
-            <tr th:each="singlePlayer: ${whiteTeam}" th:object="${singlePlayer}">
-                <td th:text="*{nickName}">Some No Name</td>
-                <td th:text="*{skillIndex}"> 1 </td>
-            </tr>
-        </table>
-
+	<th:block th:insert="fragments/navbar :: navbar" />
+	<div class="container-fluid">
+		<div class="panel-body" style="margin-left: 500px;">
+		    <h1>Black Team Players :</h1>
+		    <table border="1">
+		        <tr>
+		            <th>NickName</th>
+		            <th>SkillIndex</th>
+		        </tr>
+		        <tr th:each="singlePlayer: ${blackTeam}" th:object="${singlePlayer}">
+		            <td th:text="*{nickName}">Some No Name</td>
+		            <td th:text="*{skillIndex}"> 2 </td>
+		        </tr>
+		    </table>
+		     
+			<h1>White Team Players :</h1>
+		    <table border="1">
+		        <tr>
+		            <th>NickName</th>
+		            <th>SkillIndex</th>
+		        </tr>
+		        <tr th:each="singlePlayer: ${whiteTeam}" th:object="${singlePlayer}">
+		            <td th:text="*{nickName}">Some No Name</td>
+		            <td th:text="*{skillIndex}"> 1 </td>
+		        </tr>
+		    </table>
+		</div>
+	</div>
 </body>
 </html>

@@ -5,7 +5,7 @@
 	
 	<!-- Bootstrap -->
 	
-	<th:block th:fragment="bootstrap&jquery">
+	<th:block th:fragment="head">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -14,12 +14,9 @@
     
     <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
-    </th:block>
-	
-	<title>Insert title here</title>
 	
 	<!-- Style -->
-	<style th:fragment="style">
+	<style>
 		.row {
 			margin-top: 50px; margin-left: 0px; margin-right: 0px;
 		}
@@ -30,10 +27,14 @@
 			width: 100%; border-bottom: 1px solid #e7e7e7;
 		}
 	</style>
-
+	</th:block>
+	
+	<title>Insert title here</title>
 </head>
 <body>
 	<!-- top-navbar -->
+	
+	<th:block th:fragment="navbar">
 	
 	<div th:fragment="top-navbar" class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
@@ -56,7 +57,7 @@
 	
 	<!-- Left-menu -->
 	
-	<div th:fragment="left-menu" class="row">
+	<div class="row">
 		<div class="menu navbar navbar-default">
 			<div class="menu-container">
 				<ul class="nav navbar-nav">
@@ -70,11 +71,13 @@
 	
 	<!-- bottom-navbar -->
 	
-	<div th:fragment="bottom-navbar" class="navbar navbar-default navbar-fixed-bottom">
+	<div class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container">
 			<div class="col-md-10 navbar-text text-center">2018, All Rights Reserved by Pompon</div>
 		</div>
 	</div>
-
+	
+	</th:block>
+	
 </body>
 </html>

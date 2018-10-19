@@ -2,23 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Football team chooser</title>
+	<th:block th:insert="fragments/navbar :: head" />
+	<title>Football team chooser</title>
 </head>
 <body>
-
-        <h1>playersForGame :</h1>
-        <table border="1">
-            <tr>
-                <th>NickName</th>
-                <th>SkillIndex</th>
-            </tr>
-            <tr th:each="singlePlayer: ${listOfPlayers}" th:object="${singlePlayer}">
-                <td th:text="*{nickName}">Some No Name</td>
-                <td th:text="*{skillIndex}"> 2 </td>
-            </tr>
-        </table>
-   		
-   		<a th:href="@{/calculate}">Calculate squads </a>
-   		<p><a th:href="@{/}"> HOME </a></p>
+	<th:block th:insert="fragments/navbar :: navbar" />
+	<div class="container-fluid">
+		<div class="panel-body" style="margin-left: 500px;">
+			<h1>playersForGame :</h1>
+		    <table border="1">
+		        <tr>
+		            <th>NickName</th>
+		            <th>SkillIndex</th>
+		        </tr>
+		        <tr th:each="singlePlayer: ${listOfPlayers}" th:object="${singlePlayer}">
+		            <td th:text="*{nickName}">Some No Name</td>
+		            <td th:text="*{skillIndex}"> 2 </td>
+		        </tr>
+		    </table>
+			
+			<a th:href="@{/calculate}">Calculate squads </a>
+		</div>
+	</div>	
 </body>
 </html>

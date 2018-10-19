@@ -2,17 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<th:block th:insert="fragments/navbar :: bootstrap&jquery" />
-	<title>Football team chooser</title>
+	<th:block th:insert="fragments/navbar :: head" />
 	
-	<style th:replace="fragments/navbar :: style"></style>
+	<title>Football team chooser</title>
 	
 </head>
 <body>
 
-	<div th:replace="fragments/navbar :: top-navbar"></div>
-	
-	<div th:replace="fragments/navbar :: left-menu"></div>
+	<th:block th:insert="fragments/navbar :: navbar" />
 	
 	<div class="container-fluid">
 		<div class="panel-body" style="margin-left: 500px;">
@@ -47,8 +44,6 @@
 		    </form>	
 		</div>
 	</div>
-	
-	<div th:replace="fragments/navbar :: bottom-navbar"></div>
 	
 </body>
 </html>

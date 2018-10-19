@@ -3,26 +3,22 @@
 <head>
     <meta charset="utf-8">
 	
-	<!-- Bootstrap -->	
-	<th:block th:insert="fragments/navbar :: bootstrap&jquery" />
+	<th:block th:insert="fragments/navbar :: head" />
 
 	<title>Football team chooser</title>
-	
-	<style th:replace="fragments/navbar :: style"></style>
 	
 </head>
 <body>
 	
-	<div th:replace="fragments/navbar :: top-navbar"></div>
+	<th:block th:insert="fragments/navbar :: navbar" />
 	
-	<div th:replace="fragments/navbar :: left-menu"></div>
 	
 	<div class="container-fluid">
 		<div class="panel-body" style="margin-left: 500px;">
 			<p>Football team chooser</p>
 		</div>
 	</div>
-	<div th:replace="fragments/navbar :: bottom-navbar"></div>
+
 	
 	
 </body>
