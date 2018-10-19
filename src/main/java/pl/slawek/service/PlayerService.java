@@ -32,7 +32,6 @@ public class PlayerService {
 	
 	public Player findPlayerInDatabase(String nickName) {
 		Player player = playerRepository.findFirstByNickName(nickName);
-		
 		return player;
 	}
 
