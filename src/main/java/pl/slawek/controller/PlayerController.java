@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.WebApplicationContext;
 
 import pl.slawek.data.PlayerRepository;
 import pl.slawek.model.Player;
 import pl.slawek.service.TeamsCalculating;
 
 @Controller
+@Scope(scopeName=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class PlayerController {
 	
 	private PlayerRepository playerRepository;
@@ -50,7 +54,6 @@ public class PlayerController {
 	@GetMapping("/calculate")
 	public String calculateSquads(Model model) {
 		model.addAttribute("listOfPlayers",listOfPlayers);
-		
 		teamscalculating.setAllPlayers(listOfPlayers);
 		teamscalculating.setNumberOfplayersInTeam(numberOfplayersInTeam);
 		teamscalculating.CalculateSquads();
@@ -58,7 +61,6 @@ public class PlayerController {
 		List <Player> whiteTeam = teamscalculating.getWhiteTeam();
 		model.addAttribute("blackTeam",blackTeam);
 		model.addAttribute("whiteTeam",whiteTeam);
-		
 		return "calculateteams";
 	}
 }
