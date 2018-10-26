@@ -13,7 +13,7 @@ import pl.slawek.validator.UniqueNickNameValidator;
 
 @Documented
 @Constraint(validatedBy = { UniqueNickNameValidator.class })
-@Target({ METHOD, FIELD, PARAMETER, ANNOTATION_TYPE })
+@Target({ TYPE, ANNOTATION_TYPE })
 @Retention(RUNTIME)
 public @interface UniqueNickName {
     String message() default "{pl.slawek.constraint.UniqueNickName.message}";

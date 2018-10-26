@@ -11,13 +11,13 @@ import pl.slawek.constraint.UniqueNickName;
 
 
 @Entity
+@UniqueNickName
 public class Player {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	@Column(nullable = false, length = 15, unique = true)
 	@NotBlank(message = "{pl.slawek.model.Player.nickName.NotEmpty}")
-	@UniqueNickName
 	private String nickName;
 	@NotNull(message = "{pl.slawek.model.Player.skillIndex.NotEmpty}")
 	@Min(1)
