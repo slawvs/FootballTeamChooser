@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pl.slawek.data.PlayerRepository;
 import pl.slawek.model.Player;
@@ -34,21 +35,31 @@ public class PlayerController {
 	
 	
 	@GetMapping("/choose")
-	public String choosePlayers(Model model) {
+	public String choosePlayers(Model model,@ModelAttribute("message") String message) {
 		List <Player> allPlayers = playerRepository.findAll();
 		model.addAttribute("allPlayers",allPlayers);
 		model.addAttribute("playersForGame",new ArrayList <Long>());
+		model.addAttribute("message", message);
 		return "chooseplayers";
 	}
 	
 	@GetMapping("/show")
 	public String showChosenPlayers(@RequestParam(value="PlayerID") List <Long> playersForGame,
 			@RequestParam(value="numberOfPlayers") Integer numberOfplayersInTeam,
-			Model model) {
-		listOfPlayers = playerRepository.findAllByIdIn(playersForGame);
-		this.numberOfplayersInTeam = numberOfplayersInTeam;
-		model.addAttribute("listOfPlayers",listOfPlayers);
-		return "showchosenplayers";
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		if( playersForGame.size() >= 2*numberOfplayersInTeam ) 
+		{
+			listOfPlayers = playerRepository.findAllByIdIn(playersForGame);
+			this.numberOfplayersInTeam = numberOfplayersInTeam;
+			model.addAttribute("listOfPlayers",listOfPlayers);
+			return "showchosenplayers";
+		}else 
+		{
+			redirectAttributes.addFlashAttribute("message", "Error - you need to choose players for game at least twice as much as number of players in one team");
+			return "redirect:/choose";
+		}
+
 	}
 	
 	@GetMapping("/calculate")

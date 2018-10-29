@@ -15,10 +15,13 @@
 		<div class="panel-body" style="margin-left: 500px;">
 			<h1>All Players :</h1>
 			<div class="form-group blu-margin" >
-				<p>Select players for your game ( u need at least 2x number of players in one team) </p>
+				
+				<h1><span style="color:red" th:if="${message}" th:text="${message}">This will show if you choose too few players</span></h1>
+				
+				<p>Select players for your game ( u need at least twice as much as number of players in one team) </p>
 			    <form name='list' th:object="${playersForGame}" th:action="@{/show}" method='GET' >
-			    <select class="form-control" id="ID" name="PlayerID" multiple="multiple">
-			    <option value=""> Select Player </option>
+			    <select  class="form-control" id="ID" name="PlayerID" multiple="multiple" size=15>
+			    <option value=""> Select Players </option>
 			    <option th:each="player : ${allPlayers}" th:value="${player.id}" th:text="${player.nickName}"></option>
 			    </select>
 			    <p>How many players in one team ? </p>
