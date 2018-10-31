@@ -18,7 +18,7 @@ import pl.slawek.service.TeamsCalculating;
 
 @Controller
 @Scope(scopeName=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.TARGET_CLASS)
-public class PlayerController {
+public class CalculateTeamsController {
 	
 	private PlayerRepository playerRepository;
 	private TeamsCalculating teamscalculating;
@@ -28,7 +28,7 @@ public class PlayerController {
 
 	
 	@Autowired
-	public PlayerController(PlayerRepository playerRepository,TeamsCalculating teamscalculating) {
+	public CalculateTeamsController(PlayerRepository playerRepository,TeamsCalculating teamscalculating) {
 		this.playerRepository = playerRepository;
 		this.teamscalculating = teamscalculating;
 	}
@@ -44,11 +44,11 @@ public class PlayerController {
 	}
 	
 	@GetMapping("/show")
-	public String showChosenPlayers(@RequestParam(value="PlayerID") List <Long> playersForGame,
+	public String showChosenPlayers(@RequestParam(value="PlayerID" , required = false) List <Long> playersForGame,
 			@RequestParam(value="numberOfPlayers") Integer numberOfplayersInTeam,
 			Model model,
 			RedirectAttributes redirectAttributes) {
-		if( playersForGame.size() >= 2*numberOfplayersInTeam ) 
+		if( playersForGame!= null && playersForGame.size() >= 2*numberOfplayersInTeam ) 
 		{
 			listOfPlayers = playerRepository.findAllByIdIn(playersForGame);
 			this.numberOfplayersInTeam = numberOfplayersInTeam;

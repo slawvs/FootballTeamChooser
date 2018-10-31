@@ -12,7 +12,7 @@
 	<th:block th:insert="fragments/navbar :: navbar" />
 	
 	<div class="container-fluid">
-		<div class="panel-body" style="margin-left: 500px;">
+		<div class="panel-body">
 			<h1>Manage players in database</h1>
 		    <h1>Player Registration</h1>
 		    <form action="#" method="post" th:action="@{/save}" th:object="${player}">
@@ -44,6 +44,7 @@
 		    </form>	
 		</div>
 	</div>
+	
 	
 </body>
 </html>
