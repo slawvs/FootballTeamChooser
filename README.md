@@ -3,12 +3,11 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Screenshots](#screenshots)
+* [Demo](#Demo)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
-* [Inspiration](#inspiration)
 * [Contact](#contact)
 
 ## General info
@@ -44,11 +43,13 @@ To-do list:
 * Recording fees after game.
 * Improve Front-end
 
+To-do list (technical site)
+* Add tests
+* Add security
+* Add handling of database exceptions
+
 ## Status
 Project is in progress and will be developed.
-
-## Inspiration
-Add here credits. Project inspired by..., based on...
 
 ## Contact
 Created by [slawvs@gmail.com] - feel free to contact me!
