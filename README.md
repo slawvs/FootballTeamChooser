@@ -1,5 +1,5 @@
 # Football Team Chooser
-> Here goes your awesome project description!
+> Project based on Spring Framework .
 
 ## Table of contents
 * [General info](#general-info)
@@ -12,35 +12,40 @@
 * [Contact](#contact)
 
 ## General info
-Add more general information about project. What the purpose of the project is? Motivation?
+Main purpose of the application is to help chose equal teams based on each player’s skill when they play football match or other team game. Application is for people who liked play football occasionally with friends and want to enjoy this time together.
+The next stage of development will be will be adding the possibility of signing up for the event (football match).
+In general , application is to help organiser manage every aspect of playing team game with friends.
 
-## Screenshots
-![Example screenshot](./img/screenshot.png)
+## Demo
+Here is a working live demo :
 
 ## Technologies
-* Tech 1 - version 1.0
-* Tech 2 - version 2.0
-* Tech 3 - version 3.0
+* JavaSE - version 1.8
+* Spring Core - version 5.0.8
+* Spring Boot - version 2.0.4
+* Spring Data JPA - version 2.0.9
+* Hibernate Core - version 5.2.17
+* Thymeleaf - version 3.0.9
+* HTML - version 5
+* CSS - version 3
+* Bootstrap - version 3.3.7-1
 
 ## Setup
 Describe how to install / setup your local environement / add link to demo version.
 
-## Code Examples
-Show examples of usage:
-`put-your-code-here`
-
 ## Features
 List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
+* Create and manage players
+* Selecting teams based on skill indicator.
 
 To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+* Schedule for games with list of records.
+* Recording statistics after game.
+* Recording fees after game.
+* Improve Front-end
 
 ## Status
-Project is: _in progress_, _finished_, _no longer continue_ and why?
+Project is in progress and will be developed.
 
 ## Inspiration
 Add here credits. Project inspired by..., based on...
