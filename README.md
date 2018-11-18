@@ -55,4 +55,4 @@ Potentiality of future development
 Project is in progress and will be developed.
 
 ## Contact
-Created by [slawvs@gmail.com] - feel free to contact me!
+Created by Sławomir Morawski - [slawvs@gmail.com] - feel free to contact me!
