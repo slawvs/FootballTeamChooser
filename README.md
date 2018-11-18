@@ -5,7 +5,6 @@
 * [General info](#general-info)
 * [Demo](#Demo)
 * [Technologies](#technologies)
-* [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
 * [Contact](#contact)
@@ -16,7 +15,8 @@ The next stage of development will be will be adding the possibility of signing 
 In general , application is to help organiser manage every aspect of playing team game with friends.
 
 ## Demo
-Here is a working live demo :
+Here is a working live demo : http://www.teamchooser.pl/ or https://footballteamchooser.herokuapp.com/ . 
+(need to wait few seconds for respond because of heroku server's limits)
 
 ## Technologies
 * JavaSE - version 1.8
@@ -29,24 +29,27 @@ Here is a working live demo :
 * CSS - version 3
 * Bootstrap - version 3.3.7-1
 
-## Setup
-Describe how to install / setup your local environement / add link to demo version.
-
 ## Features
-List of features ready and TODOs for future development
-* Create and manage players
-* Selecting teams based on skill indicator.
-
-To-do list:
-* Schedule for games with list of records.
-* Recording statistics after game.
-* Recording fees after game.
-* Improve Front-end
+List of features ready:
+* Manage players with full CRUD
+* Choose players for game
+* Calculating teams based on skill indicator.
 
 To-do list (technical site)
+* Improve Front-end
+* Add REST Api
 * Add tests
 * Add security
 * Add handling of database exceptions
+
+Potentiality of future development
+* Schedule for games with list of records.
+* Recording statistics after game.
+* Recording fees after game.
+* More complex skill indicator (min 1 - max 100) : 
+    * 1-60 : starting skill
+    * 60-80 : based on last 5 games
+    * 81-100 : random number simulating day form
 
 ## Status
 Project is in progress and will be developed.
