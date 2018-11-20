@@ -10,9 +10,9 @@
 * [Contact](#contact)
 
 ## General info
-Main purpose of the application is to help chose equal teams based on each player’s skill when they play football match or other team game. Application is for people who liked play football occasionally with friends and want to enjoy this time together.
-The next stage of development will be will be adding the possibility of signing up for the event (football match).
-In general , application is to help organiser manage every aspect of playing team game with friends.
+Main purpose of the application is to help choose equal teams based on each player’s skill when they play football match or other team game. The application is for people who like to play football occasionally with friends and want to enjoy this time together.
+The next stage of development will be adding the possibility of signing up for the event (football match).
+In general, the application helps an organizer of a match to manage every aspect of a game.
 
 ## Demo
 Here is a working live demo : http://www.teamchooser.pl/ or https://footballteamchooser.herokuapp.com/ . 
@@ -37,6 +37,7 @@ List of features ready:
 
 To-do list (technical site)
 * Improve Front-end
+* Added separate accounts (Login Page)
 * Add REST Api
 * Add tests
 * Add security
