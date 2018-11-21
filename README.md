@@ -51,6 +51,7 @@ Potentiality of future development
     * 1-60 : starting skill
     * 60-80 : based on last 5 games
     * 81-100 : random number simulating day form
+* Better algorithm for calculating teams
 
 ## Status
 Project is in progress and will be developed.
