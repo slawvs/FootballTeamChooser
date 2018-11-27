@@ -13,35 +13,49 @@
 	
 	<div class="container-fluid">
 		<div class="panel-body">
-			<h1>Manage players in database</h1>
-		    <h1>Player Registration</h1>
-		    <form action="#" method="post" th:action="@{/save}" th:object="${player}">
-		        <p>Nickname <input type="text" th:field="*{nickName}" />
-				<span style="color:red" th:if="${#fields.hasErrors('${player}')}" th:errors="${player}">First name errors</span></p>
-		        <p>Skill <input type="number" th:field="*{skillIndex}" min="1" max="10"/>
-				<span style="color:red" th:if="${#fields.hasErrors('skillIndex')}" th:errors="*{skillIndex}">Skill index errors</span></p>
-		        <input type="submit" value="Save" />
-		    </form>
-		    
-		    <h1><span style="color:red" th:if="${message}" th:text="${message}">This will show if player doesn't exist</span></h1>
-		    
-		    <h1>Show Player</h1>
-		    <form action="#" method="get" th:action="@{/find}" th:object="${player}">
-		        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
-		        <input type="submit" value="Find" />
-		    </form>
-		    
-		    <h1>Find and Edit Player</h1>
-		    <form action="#" method="post" th:action="@{/edit}" th:object="${player}">
-		        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
-		        <input type="submit" value="Find & Edit" />
-		    </form>
-		    
-		    <h1>Delete Player</h1>
-		    <form action="#" method="post" th:action="@{/delete}" th:object="${player}">
-		        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
-		        <input type="submit" value="Delete" />
-		    </form>	
+			<div class="col-md-6">
+				<h1>Manage players in database</h1>
+			    <h1>Player Registration</h1>
+			    <form action="#" method="post" th:action="@{/save}" th:object="${player}">
+			        <p>Nickname <input type="text" th:field="*{nickName}" />
+					<span style="color:red" th:if="${#fields.hasErrors('${player}')}" th:errors="${player}">First name errors</span></p>
+			        <p>Skill <input type="number" th:field="*{skillIndex}" min="1" max="10"/>
+					<span style="color:red" th:if="${#fields.hasErrors('skillIndex')}" th:errors="*{skillIndex}">Skill index errors</span></p>
+			        <input type="submit" value="Save" />
+			    </form>
+			    
+			    <h1><span style="color:red" th:if="${message}" th:text="${message}">This will show if player doesn't exist</span></h1>
+			    
+			    <h1>Show Player</h1>
+			    <form action="#" method="get" th:action="@{/find}" th:object="${player}">
+			        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
+			        <input type="submit" value="Find" />
+			    </form>
+			    
+			    <h1>Find and Edit Player</h1>
+			    <form action="#" method="post" th:action="@{/edit}" th:object="${player}">
+			        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
+			        <input type="submit" value="Find & Edit" />
+			    </form>
+			    
+			    <h1>Delete Player</h1>
+			    <form action="#" method="post" th:action="@{/delete}" th:object="${player}">
+			        <p>Nickname <input type="text" id="playername" name="nickname" /></p>
+			        <input type="submit" value="Delete" />
+			    </form>	
+			</div>
+			<div class="col-md-6">
+				<table border="1">
+			        <tr>
+			            <th>NickName</th>
+			            <th>SkillIndex</th>
+			        </tr>
+			        <tr th:each="singlePlayer: ${allPlayers}" th:object="${singlePlayer}">
+			            <td th:text="*{nickName}">Some No Name</td>
+			            <td th:text="*{skillIndex}"> 2 </td>
+			        </tr>
+		    	</table>
+			</div>
 		</div>
 	</div>
 	

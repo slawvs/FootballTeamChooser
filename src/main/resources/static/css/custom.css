@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.row {
+	margin-top: 50px; margin-left: 0px; margin-right: 0px;
+}
+.menu {
+	height: 100%; position: fixed; background-color: #f8f8f8;
+}
+.menu .navbar-nav li {
+	width: 100%; border-bottom: 1px solid #e7e7e7;
+}
+.panel-body{
+	margin-left: 500px; margin-bottom: 50px;
+}
+
+body {
+    background-color: #dfe7ff;
+    background-image: url('images/football.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}

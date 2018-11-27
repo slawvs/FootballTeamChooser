@@ -15,24 +15,12 @@
     <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 	
-	<!-- Style -->
-	<style>
-		.row {
-			margin-top: 50px; margin-left: 0px; margin-right: 0px;
-		}
-		.menu {
-			height: 100%; position: fixed; background-color: #f8f8f8;
-		}
-		.menu .navbar-nav li {
-			width: 100%; border-bottom: 1px solid #e7e7e7;
-		}
-		.panel-body{
-			margin-left: 500px; margin-bottom: 50px;
-		}
-	</style>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="/css/custom.css">
+	
 	</th:block>
 	
-	<title>Insert title here</title>
+	<title>Team Chooser</title>
 </head>
 <body>
 	<!-- top-navbar -->
@@ -42,13 +30,13 @@
 	<div th:fragment="top-navbar" class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="javascript:void(0);">Football</a>
+				<a class="navbar-brand" th:href="@{/}">Football</a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class=active><a th:href="@{/}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-info-sign"></span>About</a></li>
-					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-phone-alt"></span>Contact</a></li>
+					<li><a th:href="@{/about}"><span class="glyphicon glyphicon-info-sign"></span>About</a></li>
+					<li><a th:href="@{/contact}"><span class="glyphicon glyphicon-phone-alt"></span>Contact</a></li>
 				</ul>
 				<ul>
 					<li>
@@ -64,8 +52,8 @@
 		<div class="menu navbar navbar-default">
 			<div class="menu-container">
 				<ul class="nav navbar-nav">
-					<li><a th:href="@{/choose}"><span class="glyphicon glyphicon-user"></span>Choose players for game and calculate squads </a></li>
-					<li><a th:href="@{/manage}"><span class="glyphicon glyphicon-info-sign"></span>Manage database</a></li>
+					<li><a th:href="@{/choose}"><span class="glyphicon glyphicon-thumbs-up"></span>Choose players for game and calculate squads </a></li>
+					<li><a th:href="@{/manage}"><span class="glyphicon glyphicon-user"></span>Manage database</a></li>
 				</ul>
 			</div>
 		</div>

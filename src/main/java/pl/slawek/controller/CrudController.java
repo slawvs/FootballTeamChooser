@@ -42,11 +42,13 @@ public class CrudController {
 	public String managePlayers(Model model, @ModelAttribute("message") String message) {
 		model.addAttribute("player", new Player());
 		model.addAttribute("message", message);
+		List <Player> allPlayers = playerRepository.findAll();
+		model.addAttribute("allPlayers",allPlayers);
 		return "manage";
 	}
 	
 	@PostMapping("/save")
-	public String saveNewPlayer(@Valid @ModelAttribute Player player, BindingResult result) {
+	public String saveNewPlayer(Model model, @Valid @ModelAttribute Player player, BindingResult result) {
 			if(!result.hasErrors() && playerService.verifyPlayer(player))
 			{
 				playerRepository.save(player);
@@ -55,6 +57,8 @@ public class CrudController {
 			{
 	            List<ObjectError> errors = result.getAllErrors();
 	            errors.forEach(err -> System.out.println(err.getDefaultMessage()));
+	    		List <Player> allPlayers = playerRepository.findAll();
+	    		model.addAttribute("allPlayers",allPlayers);
 	            return "manage";
 			} 
         }
