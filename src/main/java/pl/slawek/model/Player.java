@@ -1,5 +1,7 @@
 package pl.slawek.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -23,6 +25,8 @@ public class Player {
 	@Min(1)
 	@Max(10)
 	private Integer skillIndex;
+	@ManyToMany(mappedBy="SetOfPlayers")
+	private Set<Team> teamsWhereParticipate;
 	
 	public Player() {
 	}
