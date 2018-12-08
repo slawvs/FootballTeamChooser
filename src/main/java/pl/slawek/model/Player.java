@@ -17,6 +17,7 @@ import pl.slawek.constraint.UniqueNickName;
 public class Player {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_player")
 	private long id;
 	@Column(nullable = false, length = 15, unique = true)
 	@NotBlank(message = "{pl.slawek.model.Player.nickName.NotEmpty}")
@@ -25,8 +26,8 @@ public class Player {
 	@Min(1)
 	@Max(10)
 	private Integer skillIndex;
-	@ManyToMany(mappedBy="SetOfPlayers")
-	private Set<Team> teamsWhereParticipate;
+	@ManyToMany(mappedBy="setOfPlayers")
+	private Set<Team> teamsWhichParticipate;
 	
 	public Player() {
 	}

@@ -16,6 +16,10 @@ import javax.validation.constraints.Min;
 
 @Entity
 public class GameRecord implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8793182837174996633L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -26,19 +30,15 @@ public class GameRecord implements Serializable {
 	//now application is ready only for 2 teams
 	@Max(2)
 	private Integer numberOfTeams;
-	@Column(nullable = false)
-	@OneToMany
-	@JoinColumn(name = "gameRecord_id")
-	private Set<Team> Teams;
+	@OneToMany(mappedBy="gameRecord")
+	private Set<Team> teams;
 	
 	public GameRecord() {
 	}
 	
-	public GameRecord(Long id, ZonedDateTime date, Integer numberOfTeams, Set<Team> teams) {
-		this.id = id;
+	public GameRecord(ZonedDateTime date, Integer numberOfTeams) {
 		this.date = date;
 		this.numberOfTeams = numberOfTeams;
-		Teams = teams;
 	}
 
 	public Long getId() {
@@ -66,11 +66,11 @@ public class GameRecord implements Serializable {
 	}
 
 	public Set<Team> getTeams() {
-		return Teams;
+		return teams;
 	}
 
 	public void setTeams(Set<Team> teams) {
-		Teams = teams;
+		this.teams = teams;
 	}
 	
 }
