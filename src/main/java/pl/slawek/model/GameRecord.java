@@ -2,10 +2,13 @@ package pl.slawek.model;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,8 +33,14 @@ public class GameRecord implements Serializable {
 	//now application is ready only for 2 teams
 	@Max(2)
 	private Integer numberOfTeams;
-	@OneToMany(mappedBy="gameRecord")
-	private Set<Team> teams;
+	@OneToMany(mappedBy="gameRecord",
+			cascade = CascadeType.PERSIST)
+	private Set<Team> teams = new HashSet<>();
+	
+	public void addTeam(Team team) {
+		team.setGameRecord(this);
+		getTeams().add(team);
+	}
 	
 	public GameRecord() {
 	}
@@ -71,6 +80,12 @@ public class GameRecord implements Serializable {
 
 	public void setTeams(Set<Team> teams) {
 		this.teams = teams;
+	}
+
+	@Override
+	public String toString() {
+		return "GameRecord [id=" + id + ", date=" + date + ", numberOfTeams=" + numberOfTeams + ", teams=" + teams
+				+ "]";
 	}
 	
 }

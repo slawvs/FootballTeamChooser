@@ -26,7 +26,7 @@ public class Player {
 	@Min(1)
 	@Max(10)
 	private Integer skillIndex;
-	@ManyToMany(mappedBy="setOfPlayers")
+	@ManyToMany(mappedBy="players")
 	private Set<Team> teamsWhichParticipate;
 	
 	public Player() {
@@ -55,6 +55,11 @@ public class Player {
 	}
 	public void setSkillIndex(Integer skillIndex) {
 		this.skillIndex = skillIndex;
+	}
+
+	@Override
+	public String toString() {
+		return "Player [id=" + id + ", nickName=" + nickName + ", skillIndex=" + skillIndex + "]";
 	}
 	
 

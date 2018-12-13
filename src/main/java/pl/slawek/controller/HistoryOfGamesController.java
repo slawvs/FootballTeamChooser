@@ -1,0 +1,79 @@
+package pl.slawek.controller;
+
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.WebApplicationContext;
+
+import pl.slawek.data.GameRecordRepository;
+import pl.slawek.model.GameRecord;
+import pl.slawek.model.Player;
+import pl.slawek.model.Team;
+import pl.slawek.service.TeamsCalculating;
+
+@Controller
+@Scope(scopeName=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.TARGET_CLASS)
+public class HistoryOfGamesController {
+	private TeamsCalculating teamscalculating;
+	private GameRecordRepository gameRecordRepository;
+	
+	@Autowired
+	public HistoryOfGamesController(TeamsCalculating teamscalculating, GameRecordRepository gameRecordRepository) {
+		this.teamscalculating = teamscalculating;
+		this.gameRecordRepository = gameRecordRepository;
+	}
+
+	@PostMapping("/newGame")
+	public String newGameRecord(Model model) {
+		//under Construction
+		model.addAttribute("gameRecord", new GameRecord());
+		List<Player> blackTeam = teamscalculating.getBlackTeam();
+		List<Player> whiteTeam = teamscalculating.getBlackTeam();
+		model.addAttribute("blackTeam",blackTeam);
+		model.addAttribute("whiteTeam",whiteTeam);
+		return "newGame";
+        }
+	
+	@PostMapping("/saveGame")
+	public String saveGameRecord(Model model, @ModelAttribute GameRecord gameRecord/*, @RequestParam(value="score") Integer score1, @RequestParam(value="score") Integer score2*/) {
+		ZonedDateTime date = ZonedDateTime.parse("2016-10-02T20:15:30-06:00",
+                DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+		gameRecord.setDate(date);
+		gameRecord.setNumberOfTeams(2);
+		Team blackTeam = new Team();
+		Team whiteTeam = new Team();
+		blackTeam.setPlayers(teamscalculating.getBlackTeam().stream().collect(Collectors.toSet()));
+		whiteTeam.setPlayers(teamscalculating.getWhiteTeam().stream().collect(Collectors.toSet()));
+		blackTeam.setScore(2);
+		whiteTeam.setScore(0);
+		blackTeam.setIndex(1);
+		whiteTeam.setIndex(2);
+		gameRecord.addTeam(blackTeam);
+		gameRecord.addTeam(whiteTeam);
+		gameRecordRepository.save(gameRecord); 
+		return "savedRecord";
+        }
+	
+	@GetMapping("/showHistory")
+	public String managePlayers() {
+		//Under Construction
+		return "history";
+	}
+}

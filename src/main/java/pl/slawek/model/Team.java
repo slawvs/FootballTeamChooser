@@ -1,10 +1,13 @@
 package pl.slawek.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +36,7 @@ public class Team implements Serializable {
     	joinColumns = {@JoinColumn(name="team_id", referencedColumnName="id_team")},
     	inverseJoinColumns = {@JoinColumn(name="player_id", referencedColumnName="id_player")}
     )
-	private Set<Player> setOfPlayers;
+	private Set<Player> players = new HashSet<>();
 	
 	public Team() {
 	}
@@ -59,12 +62,12 @@ public class Team implements Serializable {
 		this.indexOfTeam = indexOfTeam;
 	}
 
-	public Set<Player> getSetOfPlayers() {
-		return setOfPlayers;
+	public Set<Player> getPlayers() {
+		return players;
 	}
 
-	public void setSetOfPlayers(Set<Player> setOfPlayers) {
-		this.setOfPlayers = setOfPlayers;
+	public void setPlayers(Set<Player> players) {
+		this.players = players;
 	}
 	
 	public Integer getScore() {
@@ -81,5 +84,11 @@ public class Team implements Serializable {
 
 	public void setGameRecord(GameRecord gameRecord) {
 		this.gameRecord = gameRecord;
+	}
+	
+	@Override
+	public String toString() {
+		return "Team [id=" + id + ", indexOfTeam=" + indexOfTeam + ", score=" + score + ", gameRecord=" + gameRecord.getDate()
+				+ ", players=" + players + "]";
 	}
 }

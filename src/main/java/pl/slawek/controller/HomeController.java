@@ -36,8 +36,8 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home(Model model) {
-		
 		//test gameRecord
+		/*
 		ZonedDateTime date = ZonedDateTime.parse("2016-10-02T20:15:30-06:00",
                 DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 		GameRecord gamerecord1 = new GameRecord(date,2);
@@ -53,18 +53,18 @@ public class HomeController {
 		players2.add(playerRepository.getOne(3L));
 		players2.add(playerRepository.getOne(4L));
 		
-		team1.setSetOfPlayers(players1);
-		team2.setSetOfPlayers(players2);
+		team1.setPlayers(players1);
+		team2.setPlayers(players2);
 		
 
 		
 		gamerecord1.setTeams(teams);
-		gameRecordRepository.save(gamerecord1); 
 		team1.setGameRecord(gamerecord1);
 		team2.setGameRecord(gamerecord1);
-		teamRepository.save(team1);
-		teamRepository.save(team2);
-		
+		gameRecordRepository.save(gamerecord1); 
+		GameRecord gamerecord2 = gameRecordRepository.getOne(2L);
+		System.out.println(teamRepository.getOne(1L));
+		*/
 		return "index";
 	}
 	
