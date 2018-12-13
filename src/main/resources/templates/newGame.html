@@ -17,7 +17,37 @@
 		<div class="panel-body">
 			<div class="col-md-12">
 				<h1>New Game Record enter date and score</h1>
-				<form action="#" method="post" th:action="@{/saveGame}" >
+				
+				<div class="col-md-6">
+		        <h1>Black Team Players :</h1>
+		        <table border="1">
+		            <tr>
+		                <th>NickName</th>
+		                <th>SkillIndex</th>
+		            </tr>
+		            <tr th:each="singlePlayer: ${blackTeam}" th:object="${singlePlayer}">
+		                <td th:text="*{nickName}">Some No Name</td>
+		                <td th:text="*{skillIndex}"> 2 </td>
+		            </tr>
+		        </table>
+		        </div>
+		        
+		        <div class="col-md-6">
+				<h1>White Team Players :</h1>
+		        <table border="1">
+		            <tr>
+		                <th>NickName</th>
+		                <th>SkillIndex</th>
+		            </tr>
+		            <tr th:each="singlePlayer: ${whiteTeam}" th:object="${singlePlayer}">
+		                <td th:text="*{nickName}">Some No Name</td>
+		                <td th:text="*{skillIndex}"> 1 </td>
+		            </tr>
+		        </table>
+		        </div>
+	        
+				<form action="#" method="post" th:action="@{/saveGame}" th:object="${gameRecord}">
+					<p>Date <input type="date" th:field="*{date}" /></p>
 			        <button type="submit" value="NewGame"><span class="glyphicon glyphicon-floppy-disk"></span> Save game!!</button>
 				</form>				
 			</div>
