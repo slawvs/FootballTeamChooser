@@ -1,7 +1,9 @@
 package pl.slawek.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -36,7 +38,7 @@ public class Team implements Serializable {
     	joinColumns = {@JoinColumn(name="team_id", referencedColumnName="id_team")},
     	inverseJoinColumns = {@JoinColumn(name="player_id", referencedColumnName="id_player")}
     )
-	private Set<Player> players = new HashSet<>();
+	private List<Player> players = new ArrayList<>();
 	
 	public Team() {
 	}
@@ -62,11 +64,11 @@ public class Team implements Serializable {
 		this.indexOfTeam = indexOfTeam;
 	}
 
-	public Set<Player> getPlayers() {
+	public List<Player> getPlayers() {
 		return players;
 	}
 
-	public void setPlayers(Set<Player> players) {
+	public void setPlayers(List<Player> players) {
 		this.players = players;
 	}
 	

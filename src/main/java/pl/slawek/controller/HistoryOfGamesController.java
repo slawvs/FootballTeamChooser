@@ -43,30 +43,25 @@ public class HistoryOfGamesController {
 	@PostMapping("/newGame")
 	public String newGameRecord(Model model) {
 		//under Construction
-		model.addAttribute("gameRecord", new GameRecord());
-		List<Player> blackTeam = teamscalculating.getBlackTeam();
-		List<Player> whiteTeam = teamscalculating.getBlackTeam();
-		model.addAttribute("blackTeam",blackTeam);
-		model.addAttribute("whiteTeam",whiteTeam);
-		return "newGame";
-        }
-	
-	@PostMapping("/saveGame")
-	public String saveGameRecord(Model model, @ModelAttribute GameRecord gameRecord/*, @RequestParam(value="score") Integer score1, @RequestParam(value="score") Integer score2*/) {
-		ZonedDateTime date = ZonedDateTime.parse("2016-10-02T20:15:30-06:00",
-                DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-		gameRecord.setDate(date);
+		GameRecord gameRecord = new GameRecord();
 		gameRecord.setNumberOfTeams(2);
 		Team blackTeam = new Team();
 		Team whiteTeam = new Team();
-		blackTeam.setPlayers(teamscalculating.getBlackTeam().stream().collect(Collectors.toSet()));
-		whiteTeam.setPlayers(teamscalculating.getWhiteTeam().stream().collect(Collectors.toSet()));
-		blackTeam.setScore(2);
-		whiteTeam.setScore(0);
+		blackTeam.setPlayers(teamscalculating.getBlackTeam());
+		whiteTeam.setPlayers(teamscalculating.getWhiteTeam());
 		blackTeam.setIndex(1);
 		whiteTeam.setIndex(2);
 		gameRecord.addTeam(blackTeam);
 		gameRecord.addTeam(whiteTeam);
+		model.addAttribute("gameRecord", gameRecord);
+		return "newGame";
+        }
+	
+	@PostMapping("/saveGame")
+	public String saveGameRecord(Model model, @ModelAttribute GameRecord gameRecord) {
+		ZonedDateTime date = ZonedDateTime.parse("2016-10-02T20:15:30-06:00",
+                DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+		gameRecord.setDate(date);
 		gameRecordRepository.save(gameRecord); 
 		return "savedRecord";
         }

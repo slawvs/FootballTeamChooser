@@ -25,7 +25,7 @@
 		                <th>NickName</th>
 		                <th>SkillIndex</th>
 		            </tr>
-		            <tr th:each="singlePlayer: ${blackTeam}" th:object="${singlePlayer}">
+		            <tr th:each="singlePlayer: ${gameRecord.getTeams().get(0).players}" th:object="${singlePlayer}">
 		                <td th:text="*{nickName}">Some No Name</td>
 		                <td th:text="*{skillIndex}"> 2 </td>
 		            </tr>
@@ -39,7 +39,7 @@
 		                <th>NickName</th>
 		                <th>SkillIndex</th>
 		            </tr>
-		            <tr th:each="singlePlayer: ${whiteTeam}" th:object="${singlePlayer}">
+		            <tr th:each="singlePlayer: ${gameRecord.getTeams().get(1).players}" th:object="${singlePlayer}">
 		                <td th:text="*{nickName}">Some No Name</td>
 		                <td th:text="*{skillIndex}"> 1 </td>
 		            </tr>
@@ -47,7 +47,9 @@
 		        </div>
 	        
 				<form action="#" method="post" th:action="@{/saveGame}" th:object="${gameRecord}">
-					<p>Date <input type="date" th:field="*{date}" /></p>
+					
+					<p>Black Team Score <input type="number" th:field="*{gameRecord.getTeams().get(0).score}" /></p>
+					<p>White Team Score <input type="number" th:field="*{gameRecord.getTeams().get(1).score}" /></p>
 			        <button type="submit" value="NewGame"><span class="glyphicon glyphicon-floppy-disk"></span> Save game!!</button>
 				</form>				
 			</div>
