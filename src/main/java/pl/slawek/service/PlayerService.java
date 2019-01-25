@@ -20,6 +20,7 @@ public class PlayerService {
 	public PlayerService(Validator validator) {
 		this.validator = validator;
 	}
+	
 	public boolean verifyPlayer(Player player) {
         Set<ConstraintViolation<Player>> errors = validator.validate(player);
         if(!errors.isEmpty()) {

@@ -42,6 +42,10 @@ public class TeamsCalculating {
 		return WhiteTeam;
 	}
 	
+	public Integer getNumberOfplayersInTeam() {
+		return numberOfplayersInTeam;
+	}
+
 	public void setNumberOfplayersInTeam(Integer numberOfplayersInTeam) {
 		this.numberOfplayersInTeam = numberOfplayersInTeam;
 	}

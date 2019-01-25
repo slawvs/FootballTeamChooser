@@ -45,13 +45,23 @@
 		            </tr>
 		        </table>
 		        </div>
-	        
+	        	<div>
 				<form action="#" method="post" th:action="@{/saveGame}" th:object="${gameRecord}">
-					
-					<p>Black Team Score <input type="number" th:field="*{gameRecord.getTeams().get(0).score}" /></p>
-					<p>White Team Score <input type="number" th:field="*{gameRecord.getTeams().get(1).score}" /></p>
-			        <button type="submit" value="NewGame"><span class="glyphicon glyphicon-floppy-disk"></span> Save game!!</button>
-				</form>				
+					<input type="hidden" th:field="*{numberOfTeams}" />
+					<table border="1">
+						<tr>
+							<td>
+								<input type="number" th:field="*{teams[0].score}" />
+							</td>
+							<td>
+								<input type="number" th:field="*{teams[1].score}" />
+							</td>
+						</tr>
+				    </table>
+				    
+				    <button type="submit" value="NewGame"><span class="glyphicon glyphicon-floppy-disk"></span> Save game!!</button>	
+				</form>	
+				</div>			
 			</div>
 		</div>
 	</div>
