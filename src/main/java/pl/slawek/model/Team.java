@@ -17,6 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Team implements Serializable {
@@ -29,6 +31,8 @@ public class Team implements Serializable {
 	@Column(name="id_team")
 	private Long id;
 	private Integer indexOfTeam;
+	@Min(0)
+	@Max(99)
 	private Integer score;
 	@ManyToOne
 	@JoinColumn(name = "gameRecord_id")

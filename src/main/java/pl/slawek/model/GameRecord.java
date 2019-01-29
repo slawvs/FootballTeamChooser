@@ -1,7 +1,7 @@
 package pl.slawek.model;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class GameRecord implements Serializable {
 	/**
@@ -29,7 +31,8 @@ public class GameRecord implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@Column(nullable = false)
-	private ZonedDateTime date;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	private LocalDateTime date;
 	@Column(nullable = false)
 	@Min(2)
 	//now application is ready only for 2 teams
@@ -47,7 +50,7 @@ public class GameRecord implements Serializable {
 	public GameRecord() {
 	}
 	
-	public GameRecord(ZonedDateTime date, Integer numberOfTeams) {
+	public GameRecord(LocalDateTime date, Integer numberOfTeams) {
 		this.date = date;
 		this.numberOfTeams = numberOfTeams;
 	}
@@ -60,11 +63,11 @@ public class GameRecord implements Serializable {
 		this.id = id;
 	}
 
-	public ZonedDateTime getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(ZonedDateTime date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 

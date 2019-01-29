@@ -1,8 +1,10 @@
 package pl.slawek.controller;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.WebApplicationContext;
 
 import pl.slawek.data.GameRecordRepository;
@@ -30,6 +33,7 @@ import pl.slawek.model.Team;
 import pl.slawek.service.TeamsCalculating;
 
 @Controller
+@SessionAttributes("gameRecord")
 @Scope(scopeName=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class HistoryOfGamesController {
 	private TeamsCalculating teamscalculating;
@@ -43,9 +47,9 @@ public class HistoryOfGamesController {
 
 	@PostMapping("/newGame")
 	public String newGameRecord(Model model) {
-		//under Construction
 		GameRecord gameRecord = new GameRecord();
 		gameRecord.setNumberOfTeams(2);
+		gameRecord.setDate(LocalDateTime.now());
 		Team blackTeam = new Team();
 		Team whiteTeam = new Team();
 		blackTeam.setPlayers(teamscalculating.getBlackTeam());
@@ -60,10 +64,8 @@ public class HistoryOfGamesController {
 	
 	@PostMapping("/saveGame")
 	public String saveGameRecord(Model model, @ModelAttribute GameRecord gameRecord) {
-		ZonedDateTime date = ZonedDateTime.parse("2016-10-02T20:15:30-06:00",
-                DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-		gameRecord.setDate(date);
-		gameRecordRepository.save(gameRecord); 
+		gameRecordRepository.save(gameRecord);
+		model.addAttribute("gameRecord", gameRecord);
 		return "savedRecord";
         }
 	

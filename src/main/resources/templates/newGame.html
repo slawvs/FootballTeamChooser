@@ -47,18 +47,18 @@
 		        </div>
 	        	<div>
 				<form action="#" method="post" th:action="@{/saveGame}" th:object="${gameRecord}">
-					<input type="hidden" th:field="*{numberOfTeams}" />
+					<input type="datetime-local" th:field="*{date}" />
+					<p></p>
 					<table border="1">
 						<tr>
 							<td>
-								<input type="number" th:field="*{teams[0].score}" />
+								<input type="number" th:field="*{teams[0].score}" min="0" max="99" />
 							</td>
 							<td>
-								<input type="number" th:field="*{teams[1].score}" />
+								<input type="number" th:field="*{teams[1].score}" min="0" max="99" />
 							</td>
 						</tr>
 				    </table>
-				    
 				    <button type="submit" value="NewGame"><span class="glyphicon glyphicon-floppy-disk"></span> Save game!!</button>	
 				</form>	
 				</div>			

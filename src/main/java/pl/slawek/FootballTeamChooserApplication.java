@@ -1,5 +1,6 @@
 package pl.slawek;
 
+
 import javax.validation.Validator;
 
 import org.springframework.boot.SpringApplication;
@@ -21,4 +22,5 @@ public class FootballTeamChooserApplication {
 	public Validator validator() {
 	    return new LocalValidatorFactoryBean();
 	}
+	
 }

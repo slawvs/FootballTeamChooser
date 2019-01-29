@@ -16,12 +16,37 @@
 	<div class="container-fluid">
 		<div class="panel-body">
 			<div class="col-md-12">
-				<h1>New Game Record Saved  </h1>
+				<h1>New Game Record Saved </h1>
+				<div class="col-md-6">
+		        <h1>Black Team Players :</h1>
+		        <table border="1">
+		            <tr>
+		                <th>NickName</th>
+		                <th>SkillIndex</th>
+		            </tr>
+		            <tr th:each="singlePlayer: ${gameRecord.getTeams().get(0).players}" th:object="${singlePlayer}">
+		                <td th:text="*{nickName}">Some No Name</td>
+		                <td th:text="*{skillIndex}"> 2 </td>
+		            </tr>
+		        </table>
+		        </div>
+		        
+		        <div class="col-md-6">
+				<h1>White Team Players :</h1>
+		        <table border="1">
+		            <tr>
+		                <th>NickName</th>
+		                <th>SkillIndex</th>
+		            </tr>
+		            <tr th:each="singlePlayer: ${gameRecord.getTeams().get(1).players}" th:object="${singlePlayer}">
+		                <td th:text="*{nickName}">Some No Name</td>
+		                <td th:text="*{skillIndex}"> 1 </td>
+		            </tr>
+		        </table>
+		        </div>
 			</div>
 		</div>
 	</div>
 
-	
-	
 </body>
 </html>
