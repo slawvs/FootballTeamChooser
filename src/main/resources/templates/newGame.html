@@ -20,7 +20,7 @@
 				
 				<div class="col-md-6">
 		        <h1>Black Team Players :</h1>
-		        <table border="1">
+		        <table class="table table-bordered table-condensed table-hover table-striped">
 		            <tr>
 		                <th>NickName</th>
 		                <th>SkillIndex</th>
@@ -34,7 +34,7 @@
 		        
 		        <div class="col-md-6">
 				<h1>White Team Players :</h1>
-		        <table border="1">
+		        <table class="table table-bordered table-condensed table-hover table-striped">
 		            <tr>
 		                <th>NickName</th>
 		                <th>SkillIndex</th>
@@ -45,21 +45,27 @@
 		            </tr>
 		        </table>
 		        </div>
-	        	<div>
-				<form action="#" method="post" th:action="@{/saveGame}" th:object="${gameRecord}">
+	        	<div class="col-md-12">
+	        		<h3>Enter Date</h3>
+					<form action="#" method="post" th:action="@{/saveGame}" th:object="${gameRecord}">
 					<input type="datetime-local" th:field="*{date}" />
-					<p></p>
-					<table border="1">
-						<tr>
-							<td>
-								<input type="number" th:field="*{teams[0].score}" min="0" max="99" />
-							</td>
-							<td>
-								<input type="number" th:field="*{teams[1].score}" min="0" max="99" />
-							</td>
-						</tr>
-				    </table>
-				    <button type="submit" value="NewGame"><span class="glyphicon glyphicon-floppy-disk"></span> Save game!!</button>	
+						<h3>Enter Score</h3>
+						<table border="1">
+							<tr>
+				                <th>White Team Score</th>
+				                <th>Black Team Score</th>
+				            </tr>
+							<tr>
+								<td>
+									<input type="number" th:field="*{teams[0].score}" min="0" max="99" required />
+								</td>
+								<td>
+									<input type="number" th:field="*{teams[1].score}" min="0" max="99" required />
+								</td>
+							</tr>
+					    </table>
+				    <p></p>
+				    <button type="submit" value="NewGame"><span class="glyphicon glyphicon-floppy-disk"></span> Save game!!</button>
 				</form>	
 				</div>			
 			</div>

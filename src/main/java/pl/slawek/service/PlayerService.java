@@ -13,6 +13,7 @@ import pl.slawek.model.Player;
 
 @Service
 public class PlayerService {
+	
 	private Validator validator;
 	private PlayerRepository playerRepository;
 	

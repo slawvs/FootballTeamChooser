@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 	<meta charset="UTF-8">
 	
@@ -38,8 +39,17 @@
 					<li><a th:href="@{/about}"><span class="glyphicon glyphicon-info-sign"></span>About</a></li>
 					<li><a th:href="@{/contact}"><span class="glyphicon glyphicon-phone-alt"></span>Contact</a></li>
 				</ul>
-				<ul>
+				<ul class="nav navbar-nav navbar navbar-right">
 					<li>
+						<div class="logout" sec:authorize="isAuthenticated()">		
+				            Logged in user: <span sec:authentication="name">Annonymous</span> |					
+				          	Roles: <span sec:authentication="principal.authorities">Guest</span>				
+				            <div>
+				                <form action="#" th:action="@{/logout}" method="post">					
+				                    <input type="submit" value="Logout" />
+				                </form>
+				            </div>
+				        </div>
 					</li>
 				</ul>
 			</div>
@@ -52,8 +62,9 @@
 		<div class="menu navbar navbar-default">
 			<div class="menu-container">
 				<ul class="nav navbar-nav">
-					<li><a th:href="@{/choose}"><span class="glyphicon glyphicon-thumbs-up"></span>Choose players for game and calculate squads </a></li>
-					<li><a th:href="@{/manage}"><span class="glyphicon glyphicon-user"></span>Manage database</a></li>
+					<li><a th:href="@{/choose}"><span class="glyphicon glyphicon-thumbs-up"></span> Choose players for game and calculate squads </a></li>
+					<li><a th:href="@{/manage}"><span class="glyphicon glyphicon-user"></span> Manage database</a></li>
+					<li><a th:href="@{/showHistory}"><span class="glyphicon glyphicon-level-up"></span> Show history of all games </a></li>
 				</ul>
 			</div>
 		</div>

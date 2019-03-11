@@ -36,8 +36,10 @@ import pl.slawek.service.TeamsCalculating;
 @SessionAttributes("gameRecord")
 @Scope(scopeName=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class HistoryOfGamesController {
+	
 	private TeamsCalculating teamscalculating;
 	private GameRecordRepository gameRecordRepository;
+	
 	
 	@Autowired
 	public HistoryOfGamesController(TeamsCalculating teamscalculating, GameRecordRepository gameRecordRepository) {
@@ -70,8 +72,9 @@ public class HistoryOfGamesController {
         }
 	
 	@GetMapping("/showHistory")
-	public String managePlayers() {
-		//Under Construction
+	public String managePlayers(Model model) {
+		List <GameRecord> allGames = gameRecordRepository.findAll();
+		model.addAttribute("allGames", allGames);
 		return "history";
 	}
 }
