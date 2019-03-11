@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+	
+	<th:block th:insert="fragments/navbar :: head" />
+
+	<title>Football team chooser</title>
+	
+</head>
+<body>
+	
+	<th:block th:insert="fragments/navbar :: navbar" />
+	
+	
+	<div class="container-fluid">
+		<div class="panel-body">
+			<div class="col-md-12">
+				<h1>New Game Record enter date and score</h1>
+				
+				<div class="col-md-6">
+		        <h1>Black Team Players :</h1>
+		        <table class="table table-bordered table-condensed table-hover table-striped">
+		            <tr>
+		                <th>NickName</th>
+		                <th>SkillIndex</th>
+		            </tr>
+		            <tr th:each="singlePlayer: ${gameRecord.getTeams().get(0).players}" th:object="${singlePlayer}">
+		                <td th:text="*{nickName}">Some No Name</td>
+		                <td th:text="*{skillIndex}"> 2 </td>
+		            </tr>
+		        </table>
+		        </div>
+		        
+		        <div class="col-md-6">
+				<h1>White Team Players :</h1>
+		        <table class="table table-bordered table-condensed table-hover table-striped">
+		            <tr>
+		                <th>NickName</th>
+		                <th>SkillIndex</th>
+		            </tr>
+		            <tr th:each="singlePlayer: ${gameRecord.getTeams().get(1).players}" th:object="${singlePlayer}">
+		                <td th:text="*{nickName}">Some No Name</td>
+		                <td th:text="*{skillIndex}"> 1 </td>
+		            </tr>
+		        </table>
+		        </div>
+	        	<div class="col-md-12">
+	        		<h3>Enter Date</h3>
+					<form action="#" method="post" th:action="@{/saveGame}" th:object="${gameRecord}">
+					<input type="datetime-local" th:field="*{date}" />
+						<h3>Enter Score</h3>
+						<table border="1">
+							<tr>
+				                <th>White Team Score</th>
+				                <th>Black Team Score</th>
+				            </tr>
+							<tr>
+								<td>
+									<input type="number" th:field="*{teams[0].score}" min="0" max="99" required />
+								</td>
+								<td>
+									<input type="number" th:field="*{teams[1].score}" min="0" max="99" required />
+								</td>
+							</tr>
+					    </table>
+				    <p></p>
+				    <button type="submit" value="NewGame"><span class="glyphicon glyphicon-floppy-disk"></span> Save game!!</button>
+				</form>	
+				</div>			
+			</div>
+		</div>
+	</div>
+
+	
+	
+</body>
+</html>

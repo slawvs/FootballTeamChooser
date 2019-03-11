@@ -4,16 +4,23 @@
 	margin-top: 50px; margin-left: 0px; margin-right: 0px;
 }
 .menu {
-	height: 100%; position: fixed; background-color: #f8f8f8;
+	height: 100%; width: 500px; position: fixed; background-color: #f8f8f8;
 }
 .menu .navbar-nav li {
 	width: 100%; border-bottom: 1px solid #e7e7e7;
 }
+
 .panel-body{
 	margin-left: 500px; margin-bottom: 50px;
 }
 
-body {
-
+#loginPage {
+	background-color:gray;
+	display: flex;
+	align-items: center;
+	height: 100vh;
 }
 
+#loginPage .panel-body{
+	margin-left: 0px; margin-bottom: 0px;
+}

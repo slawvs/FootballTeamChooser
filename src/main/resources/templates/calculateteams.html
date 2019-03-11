@@ -10,7 +10,7 @@
 	<div class="container-fluid">
 		<div class="panel-body">
 	        <h1>playersForGame :</h1>
-	        <table border="1">
+	        <table class="table table-bordered table-condensed table-hover table-striped">
 	            <tr>
 	                <th>NickName</th>
 	                <th>SkillIndex</th>
@@ -20,9 +20,9 @@
 	                <td th:text="*{skillIndex}"> 2 </td>
 	            </tr>
 	        </table>
-	        
-	                <h1>Black Team Players :</h1>
-	        <table border="1">
+	        <div class="col-md-6">
+	        <h1>Black Team Players :</h1>
+	        <table class="table table-bordered table-condensed table-hover table-striped">
 	            <tr>
 	                <th>NickName</th>
 	                <th>SkillIndex</th>
@@ -32,9 +32,11 @@
 	                <td th:text="*{skillIndex}"> 2 </td>
 	            </tr>
 	        </table>
+	        </div>
 	        
+	        <div class="col-md-6">
 			<h1>White Team Players :</h1>
-	        <table border="1">
+	        <table class="table table-bordered table-condensed table-hover table-striped">
 	            <tr>
 	                <th>NickName</th>
 	                <th>SkillIndex</th>
@@ -44,7 +46,12 @@
 	                <td th:text="*{skillIndex}"> 1 </td>
 	            </tr>
 	        </table>
+	        </div>
+	        
 	        <a th:href="@{/calculate}" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-repeat"></span> Calculate squads (u can do it again)</a>
+			<form action="#" method="post" th:action="@{/newGame}" >
+			        <button type="submit" value="NewGame"><span class="glyphicon glyphicon-floppy-disk"></span> Save game to history</button>
+			</form>
 		</div>
 	</div>
 

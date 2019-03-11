@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+	<meta charset="utf-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+    <!-- jQuery first, then Bootstrap JS -->
+    
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    
+    
+    <!-- Custom CSS -->
+	<link rel="stylesheet" href="/css/custom.css">
+	<title>Registration form</title>
+
+</head>
+<body id="loginPage">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<strong>Registration form</strong>
+						</div>
+						<div class="panel-body">
+						    <form action="#" method="post" th:action="@{/register}" th:object="${user}">
+						        <input th:field="*{firstName}" placeholder="First Name" /><br />
+						        <input th:field="*{lastName}" placeholder="Last Name" /><br />
+						        <p th:errors="*{email}">Email errors</p>
+						        <input th:field="*{email}" type="email" placeholder="Email" /><br />
+						        <p th:errors="*{password}">Password errors</p>
+						        <input th:field="*{password}" type="password" placeholder="Password" /><br />
+						        <br />
+						        <input type="submit" value="Register" />
+						    </form>
+						    <br />
+						    <div class="form-group">
+								<div class="col-md-12">
+									<a href="#" th:href="@{/}">Go to homepage</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

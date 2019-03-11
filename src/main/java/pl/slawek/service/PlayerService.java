@@ -13,6 +13,7 @@ import pl.slawek.model.Player;
 
 @Service
 public class PlayerService {
+	
 	private Validator validator;
 	private PlayerRepository playerRepository;
 	
@@ -20,6 +21,7 @@ public class PlayerService {
 	public PlayerService(Validator validator) {
 		this.validator = validator;
 	}
+	
 	public boolean verifyPlayer(Player player) {
         Set<ConstraintViolation<Player>> errors = validator.validate(player);
         if(!errors.isEmpty()) {

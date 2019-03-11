@@ -18,7 +18,6 @@ import pl.slawek.model.Player;
 @Scope(scopeName=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class TeamsCalculating {
 	
-	//private PlayerRepository playerRepository;
 	Comparator <Player> komp = new Komparator();
 	
 	private List<Player> BlackTeam;
@@ -26,10 +25,8 @@ public class TeamsCalculating {
 	private List<Player> AllPlayers;
 	private Integer numberOfplayersInTeam;
 	
-
 	@Autowired
-	public TeamsCalculating(PlayerRepository playerRepository) {
-		//this.playerRepository = playerRepository;
+	public TeamsCalculating() {
 	}
 	
 	public void setAllPlayers(List<Player> AllPlayers) {
@@ -45,14 +42,17 @@ public class TeamsCalculating {
 		return WhiteTeam;
 	}
 	
+	public Integer getNumberOfplayersInTeam() {
+		return numberOfplayersInTeam;
+	}
+
 	public void setNumberOfplayersInTeam(Integer numberOfplayersInTeam) {
 		this.numberOfplayersInTeam = numberOfplayersInTeam;
 	}
 
 	public void CalculateSquads() {
 		BlackTeam = new ArrayList<Player>();
-		WhiteTeam = new ArrayList<Player>();;
-		//AllPlayers = playerRepository.findAll();
+		WhiteTeam = new ArrayList<Player>();
 		AllPlayers.sort(komp);
 		ChooseTeamForPlayer();
 
@@ -110,9 +110,6 @@ public class TeamsCalculating {
 					}
 					
 				}
-
-			
-				
 		}		
 		
 	}
