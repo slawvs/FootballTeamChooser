@@ -5,11 +5,16 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.slawek.component.PlayerResourceAssembler;
 import pl.slawek.data.PlayerRepository;
+import pl.slawek.exception.PlayerNotFoundException;
 import pl.slawek.model.Player;
+import pl.slawek.service.PlayerService;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,9 +46,13 @@ public class PlayerControllerRest {
     }
 
     @PostMapping
-    public Player newPlayer(@RequestBody Player newPlayer) {
+    public ResponseEntity<?> newPlayer(@RequestBody Player newPlayer) throws URISyntaxException {
 
-        return playerRepository.save(newPlayer);
+        Resource<Player> resource = playerResourceAssembler.toResource(playerRepository.save(newPlayer));
+
+        return ResponseEntity
+                .created(new URI(resource.getId().expand().getHref()))
+                .body(resource);
     }
 
     //Single item
@@ -52,26 +61,37 @@ public class PlayerControllerRest {
     public Resource<Player> getPlayer(@PathVariable long id) {
 
         Player player = playerRepository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new PlayerNotFoundException(id));
 
         return playerResourceAssembler.toResource(player);
     }
 
     @PutMapping("/{id}")
-    public Player updatePlayer(@RequestBody Player updatedPlayer, @PathVariable Long id) {
+    public ResponseEntity<?> updatePlayer(@RequestBody Player newPlayer, @PathVariable Long id) throws URISyntaxException {
 
-        return playerRepository.findById(id)
+        Player updatedPlayer = playerRepository.findById(id)
                 .map(player -> {
-                    player.setNickName(updatedPlayer.getNickName());
-                    player.setSkillIndex(updatedPlayer.getSkillIndex());
+                    player.setNickName(newPlayer.getNickName());
+                    player.setSkillIndex(newPlayer.getSkillIndex());
                     return playerRepository.save(player);
                 })
-                .orElse(null);
+                .orElseThrow(() -> new PlayerNotFoundException(id));
+
+        Resource<Player> resource = playerResourceAssembler.toResource(updatedPlayer);
+
+        return ResponseEntity
+                .created(new URI(resource.getId().expand().getHref()))
+                .body(resource);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePlayer(@PathVariable Long id) {
+    public ResponseEntity<?> deletePlayer(@PathVariable Long id) {
 
-        playerRepository.deleteById(id);
+        Player player = playerRepository.findById(id)
+                .orElseThrow(()-> new PlayerNotFoundException(id));
+
+        playerRepository.delete(player);
+
+        return ResponseEntity.noContent().build();
     }
 }
