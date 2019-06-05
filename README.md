@@ -34,13 +34,15 @@ List of features ready:
 * Manage players with full CRUD
 * Choose players for game
 * Calculating teams based on skill indicator.
+* History of games with scores
+* Separate accounts (Login Page)
+* Security (only logged user can view the entire website)
+* RESTfull Api for managing players
 
 To-do list (technical site)
 * Improve Front-end
-* Added separate accounts (Login Page)
-* Add REST Api
+* Add REST Api for whole application
 * Add tests
-* Add security
 * Add handling of database exceptions
 
 Potentiality of future development
