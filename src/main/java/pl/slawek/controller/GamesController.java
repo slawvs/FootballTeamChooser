@@ -35,14 +35,14 @@ import pl.slawek.service.TeamsCalculating;
 @Controller
 @SessionAttributes("gameRecord")
 @Scope(scopeName=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.TARGET_CLASS)
-public class HistoryOfGamesController {
+public class GamesController {
 	
 	private TeamsCalculating teamscalculating;
 	private GameRecordRepository gameRecordRepository;
 	
 	
 	@Autowired
-	public HistoryOfGamesController(TeamsCalculating teamscalculating, GameRecordRepository gameRecordRepository) {
+	public GamesController(TeamsCalculating teamscalculating, GameRecordRepository gameRecordRepository) {
 		this.teamscalculating = teamscalculating;
 		this.gameRecordRepository = gameRecordRepository;
 	}
