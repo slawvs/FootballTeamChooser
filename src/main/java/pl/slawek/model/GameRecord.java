@@ -2,20 +2,9 @@ package pl.slawek.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
@@ -38,10 +27,18 @@ public class GameRecord implements Serializable {
 	//now application is ready only for 2 teams
 	@Max(2)
 	private Integer numberOfTeams;
+	private Integer numberOfPlayersPerTeam;
+	private GameStatus gameStatus;
+	@ManyToMany
+	@JoinTable(name = "game_player",
+			joinColumns = {@JoinColumn(name="gameRecord_id", referencedColumnName="id_gameRecord")},
+			inverseJoinColumns = {@JoinColumn(name="player_id", referencedColumnName="id_player")}
+	)
+	private List<Player> listOfPlayers = new LinkedList<>();
 	@OneToMany(mappedBy="gameRecord",
 			cascade = CascadeType.PERSIST)
 	private List<Team> teams = new ArrayList<>();
-	
+
 	public void addTeam(Team team) {
 		team.setGameRecord(this);
 		getTeams().add(team);
