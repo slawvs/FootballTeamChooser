@@ -5,5 +5,5 @@ public enum GameStatus {
     OPEN,
     FULL,
     CLOSED,
-    ARCHIVED;
+    ARCHIVED
 }

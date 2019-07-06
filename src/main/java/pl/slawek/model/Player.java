@@ -26,8 +26,8 @@ public class Player {
 	@Min(1)
 	@Max(10)
 	private Integer skillIndex;
-	@ManyToMany(mappedBy = "players")
-	private Set<Team> gamesWhichParticipate;
+	@ManyToMany(mappedBy = "listOfPlayers")
+	private Set<GameRecord> gamesWhichParticipate;
 	@ManyToMany(mappedBy = "players")
 	private Set<Team> teamsWhichParticipate;
 	

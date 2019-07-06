@@ -18,6 +18,7 @@ public class GameRecord implements Serializable {
 	private static final long serialVersionUID = -8793182837174996633L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_gameRecord")
 	private Long id;
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
