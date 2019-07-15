@@ -21,7 +21,9 @@ public class User {
 	@ManyToMany(cascade = CascadeType.PERSIST,
 			fetch = FetchType.EAGER)
 	private Set<UserRole> roles = new HashSet<>();
-	
+	@OneToMany(mappedBy = "gameCreator")
+	private Set<GameRecord> gamesCreated = new HashSet<>();
+
 	public Long getId() {
 		return id;
 	}

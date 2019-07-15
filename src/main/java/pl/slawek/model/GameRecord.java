@@ -20,6 +20,9 @@ public class GameRecord implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_gameRecord")
 	private Long id;
+	@ManyToOne
+	@JoinColumn(name = "user_id",nullable = false)
+	private User gameCreator;
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime date;

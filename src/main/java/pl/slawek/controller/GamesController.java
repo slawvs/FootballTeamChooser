@@ -54,8 +54,6 @@ public class GamesController {
 		gameRecord.setDate(LocalDateTime.now());
 		Team blackTeam = new Team();
 		Team whiteTeam = new Team();
-		blackTeam.setPlayers(teamscalculating.getBlackTeam());
-		whiteTeam.setPlayers(teamscalculating.getWhiteTeam());
 		blackTeam.setIndex(1);
 		whiteTeam.setIndex(2);
 		gameRecord.addTeam(blackTeam);
