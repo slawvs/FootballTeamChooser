@@ -1,36 +1,24 @@
 package pl.slawek.controller;
 
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.WebApplicationContext;
 
 import pl.slawek.data.GameRecordRepository;
 import pl.slawek.model.GameRecord;
-import pl.slawek.model.Player;
 import pl.slawek.model.Team;
 import pl.slawek.service.TeamsCalculating;
+import pl.slawek.session.SessionUserInformations;
 
 @Controller
 @SessionAttributes("gameRecord")
@@ -39,12 +27,14 @@ public class GamesController {
 	
 	private TeamsCalculating teamscalculating;
 	private GameRecordRepository gameRecordRepository;
+	private SessionUserInformations sessionUserInformations;
 	
 	
 	@Autowired
-	public GamesController(TeamsCalculating teamscalculating, GameRecordRepository gameRecordRepository) {
+	public GamesController(TeamsCalculating teamscalculating, GameRecordRepository gameRecordRepository, SessionUserInformations sessionUserInformations) {
 		this.teamscalculating = teamscalculating;
 		this.gameRecordRepository = gameRecordRepository;
+		this.sessionUserInformations = sessionUserInformations;
 	}
 
 	@PostMapping("/newGame")
@@ -64,6 +54,7 @@ public class GamesController {
 	
 	@PostMapping("/saveGame")
 	public String saveGameRecord(Model model, @ModelAttribute GameRecord gameRecord) {
+		gameRecord.setGameCreator(sessionUserInformations.getCurrentlyLogedUser());
 		gameRecordRepository.save(gameRecord);
 		model.addAttribute("gameRecord", gameRecord);
 		return "savedRecord";

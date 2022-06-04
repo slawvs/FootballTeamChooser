@@ -9,3 +9,5 @@ INSERT INTO `players`.`player` (`id_player`, `nick_name`, `skill_index`) VALUES 
 INSERT INTO `players`.`player` (`id_player`, `nick_name`, `skill_index`) VALUES ('6', 'test6', '6');
 INSERT INTO `players`.`player` (`id_player`, `nick_name`, `skill_index`) VALUES ('7', 'test7', '7');
 INSERT INTO `players`.`player` (`id_player`, `nick_name`, `skill_index`) VALUES ('8', 'test8', '8');
+
+insert into user(id,email,first_name,last_name,password) VALUES ('1','a@a.pl','a','a','$2a$10$wYKIm0c8EHQ3A1Ud78VntOWsFwCrtH4l45jKwPHHq53JM30Wz5PRm')

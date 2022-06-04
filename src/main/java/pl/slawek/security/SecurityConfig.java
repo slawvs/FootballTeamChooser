@@ -21,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					"/contact",
 					"/webjars/**",
 					"/css/**",
+					"/api/**",
 					"/register").permitAll()
 			.anyRequest().authenticated()
 		.and()
@@ -31,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout()
 			.permitAll()
 		.and()
-				.httpBasic();
+				.httpBasic()
+		.and().csrf().disable();
 	}
 }

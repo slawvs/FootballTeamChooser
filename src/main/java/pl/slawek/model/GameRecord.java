@@ -56,6 +56,38 @@ public class GameRecord implements Serializable {
 		this.numberOfTeams = numberOfTeams;
 	}
 
+	public User getGameCreator() {
+		return gameCreator;
+	}
+
+	public void setGameCreator(User gameCreator) {
+		this.gameCreator = gameCreator;
+	}
+
+	public Integer getNumberOfPlayersPerTeam() {
+		return numberOfPlayersPerTeam;
+	}
+
+	public void setNumberOfPlayersPerTeam(Integer numberOfPlayersPerTeam) {
+		this.numberOfPlayersPerTeam = numberOfPlayersPerTeam;
+	}
+
+	public GameStatus getGameStatus() {
+		return gameStatus;
+	}
+
+	public void setGameStatus(GameStatus gameStatus) {
+		this.gameStatus = gameStatus;
+	}
+
+	public List<Player> getListOfPlayers() {
+		return listOfPlayers;
+	}
+
+	public void setListOfPlayers(List<Player> listOfPlayers) {
+		this.listOfPlayers = listOfPlayers;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -11,7 +11,9 @@ import pl.slawek.component.PlayerResourceAssembler;
 import pl.slawek.data.PlayerRepository;
 import pl.slawek.exception.PlayerNotFoundException;
 import pl.slawek.model.Player;
+import pl.slawek.model.Team;
 import pl.slawek.service.PlayerService;
+import pl.slawek.service.TeamsCalculating;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -23,13 +25,15 @@ import java.util.stream.Collectors;
 public class PlayerControllerRest {
 
     private PlayerRepository playerRepository;
-
     private PlayerResourceAssembler playerResourceAssembler;
 
+    private TeamsCalculating teamscalculating;
+
     @Autowired
-    public PlayerControllerRest(PlayerRepository playerRepository, PlayerResourceAssembler playerResourceAssembler) {
+    public PlayerControllerRest(PlayerRepository playerRepository, PlayerResourceAssembler playerResourceAssembler, TeamsCalculating teamscalculating) {
         this.playerRepository = playerRepository;
         this.playerResourceAssembler = playerResourceAssembler;
+        this.teamscalculating = teamscalculating;
     }
 
     // Aggregate root
@@ -93,5 +97,24 @@ public class PlayerControllerRest {
         playerRepository.delete(player);
 
         return ResponseEntity.noContent().build();
+    }
+
+    //testing posibility to calculate teams with REST
+    @PostMapping("/calculate/{number}")
+    public TeamsRest getTeams(@RequestBody List<Player> players,@PathVariable Integer number) {
+
+        teamscalculating.setAllPlayers(players);
+        teamscalculating.setNumberOfplayersInTeam(number);
+        teamscalculating.CalculateSquads();
+/*        List <Player> blackTeam = teamscalculating.getBlackTeam();
+        List <Player> whiteTeam = teamscalculating.getWhiteTeam();*/
+
+        TeamsRest teamsRest = new TeamsRest(teamscalculating.getBlackTeam(),teamscalculating.getWhiteTeam());
+/*        List<Resource<Player>> playersResource = players.stream()
+                .map(playerResourceAssembler::toResource)
+                .collect(Collectors.toList());*/
+/*        return new Resources<>(playersResource,
+                linkTo(methodOn(PlayerControllerRest.class).getPlayers()).withSelfRel());*/
+        return teamsRest;
     }
 }
